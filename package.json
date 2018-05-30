@@ -4,7 +4,7 @@
   "description": "Traverse of complex entities",
   "author": "Kostiantyn Wandalen <wtory.net@domainsbyproxy.com>",
   "license": "MIT",
-  "main": "staging/dwtools/abase/layer3/Traverser.s",
+  "main": "staging/dwtools/abase/layer3/bTraverser.s",
   "files": [
     "staging/dwtools/abase/layer3",
     "production"

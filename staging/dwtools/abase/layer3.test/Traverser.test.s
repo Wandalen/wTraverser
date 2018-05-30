@@ -38,10 +38,70 @@ var _ = _global_.wTools;
 
 function trivial( test )
 {
-  var a = { x : 1, dir : { y : 2, z : 3 } };
 
-  test.description = 'trivial';
-  test.identical( 1,1 );
+  var a = { x : 1, dir : { y : 2, z : 'x' }, buffer : new Float32Array([ 1,2,3 ]), array : [ 3,4,5 ] };
+
+  // onString : null,
+  // onRoutine : null,
+  // onBuffer : null,
+  // onInstanceCopy : null,
+  // onContainerUp : null,
+  // onContainerDown : null,
+  // onElementUp : null,
+  // onElementDown : null,
+//
+  // onMapUp : () => true,
+  // onMapEntryUp : () => true,
+  // onMapEntryDown : () => true,
+  // onArrayUp : () => true,
+  // onBufferUp : () => true,
+
+  var onMapUpPaths = [];
+  function onMapUp( iteration )
+  {
+    onMapUpPaths.push( iteration.path );
+  }
+
+  var onMapEntryUpPaths = [];
+  function onMapEntryUp( parent,child )
+  {
+    onMapEntryUpPaths.push( child.path );
+  }
+
+  var onMapEntryDownPaths = [];
+  function onMapEntryDown( parent,child )
+  {
+    onMapEntryDownPaths.push( child.path );
+  }
+
+  var onArrayUpPaths = [];
+  function onArrayUp( iteration )
+  {
+    onArrayUpPaths.push( iteration.path );
+  }
+
+  var onBufferUpPaths = [];
+  function onBufferUp( iteration )
+  {
+    onBufferUpPaths.push( iteration.path );
+  }
+
+  var r = _.traverse
+  ({
+    src : a,
+    onMapEntryUp : onMapEntryUp,
+    onMapEntryDown : onMapEntryDown,
+    onArrayUp : onArrayUp,
+    onBufferUp : onBufferUp,
+    onMapUp : onMapUp,
+  })
+  console.log( r );
+
+  test.identical( onMapUpPaths,[ '/','/dir' ] );
+  test.identical( onMapEntryUpPaths,[ '/x', '/dir', '/dir/y', '/dir/z', '/buffer', '/array' ] );
+  test.identical( onMapEntryDownPaths,[ '/x', '/dir/y', '/dir/z', '/dir', '/buffer', '/array' ] );
+  test.identical( onArrayUpPaths,[ '/array' ] );
+  test.identical( onBufferUpPaths,[ '/buffer' ] );
 
 }
 

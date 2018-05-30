@@ -61,7 +61,7 @@ TraverseIterator.select = function select( key )
 
   this.src = this.iterationPrev.src[ key ];
   this.key = key;
-  this.path = this.iterationPrev.path + '.' + key;
+  this.path = this.iterationPrev.path === '/' ? '/' + key : this.iterationPrev.path + '/' + key;
 
   this.level = this.level+1;
 
@@ -120,7 +120,6 @@ function _traverseIterationInit( iteration,iterator )
   }
   else
   {
-    result.path = '/';
     result.level = iterator.level;
     result.copyingDegree = iterator.copyingDegree;
 
@@ -128,7 +127,7 @@ function _traverseIterationInit( iteration,iterator )
     result.dst = iterator.dst;
     result.src = iterator.src;
     result.key = iterator.key;
-    result.path = iterator.path;
+    result.path = iterator.path ? iterator.path : '/';
 
     result.customFields = iterator.customFields;
     result.dropFields = iterator.dropFields;
@@ -159,11 +158,7 @@ function _traverseIteration( o )
 
 function _traverser( routine,o )
 {
-  // var routine = routine || _traverser;
   var routine = _traverser;
-
-  // if( o.copyingMedials === undefined )
-  // o.copyingMedials = _.instanceIsStandard( o.src ) ? 0 : 1;
 
   _.assert( _.routineIs( routine ) );
   _.assert( routine.iterationDefaults );
@@ -180,6 +175,7 @@ function _traverser( routine,o )
   o.defaults = routine.defaults;
 
   var iteration = _traverseIteration( o );
+
   return iteration;
 }
 
@@ -202,7 +198,7 @@ _traverser.iterationDefaults =
 
 }
 
-_traverser._defaults =
+_traverser.defaults2 =
 {
 
   copyingComposes : 3,
@@ -233,16 +229,16 @@ _traverser._defaults =
 _traverser.defaults =
 {
 
-  onMapUp : null,
-  onMapEntryUp : null,
-  onMapEntryDown : null,
-  onArrayUp : null,
-  onBufferUp : null,
+  onMapUp : () => true,
+  onMapEntryUp : () => true,
+  onMapEntryDown : () => true,
+  onArrayUp : () => true,
+  onBufferUp : () => true,
 
 }
 
-_.mapExtend( _traverser._defaults, _traverser.iterationDefaults );
-_.mapExtend( _traverser.defaults, _traverser._defaults );
+_.mapExtend( _traverser.defaults2, _traverser.iterationDefaults );
+_.mapExtend( _traverser.defaults, _traverser.defaults2 );
 
 //
 
@@ -326,11 +322,6 @@ function _traverseMap( iteration,iterator )
       continue;
     }
 
-    if( key === 'providersWithProtocolMap' )
-    {
-      debugger;xxx;
-    }
-
     var newIteration = iteration.iterationNew( key );
 
     iteration.onMapEntryUp( iteration,newIteration );
@@ -379,10 +370,21 @@ function _traverseArray( iteration,iterator )
   return iteration.dst;
 
   if( iteration.copyingDegree )
-  for( var key = 0 ; key < iteration.src.length ; key++ )
+  if( iteration.dst )
   {
-    var newIteration = iteration.iterationNew( key );
-    iteration.dst[ key ] = _traverseAct( newIteration,iterator );
+    for( var key = 0 ; key < iteration.src.length ; key++ )
+    {
+      var newIteration = iteration.iterationNew( key );
+      iteration.dst[ key ] = _traverseAct( newIteration,iterator );
+    }
+  }
+  else
+  {
+    for( var key = 0 ; key < iteration.src.length ; key++ )
+    {
+      var newIteration = iteration.iterationNew( key );
+      _traverseAct( newIteration,iterator );
+    }
   }
 
   /* container down */
@@ -577,8 +579,10 @@ function _traverseAct( iteration,iterator )
 
 function traverse( o )
 {
+  debugger;
   var iteration = _._traverser( traverse,o );
-  _._traverseAct( iteration,itrator );
+  debugger;
+  var result = _._traverseAct( iteration, iteration.iterator );
   return result;
 }
 
