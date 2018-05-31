@@ -557,6 +557,15 @@ function _traverseAct( iteration,iterator )
     handled = 1;
   }
 
+  /* date */
+
+  if( _.dateIs( iteration.src ) )
+  {
+    handled = 1;
+    if( iterator.onDate )
+    iterator.onDate( iteration.src,iteration,iterator );
+  }
+
   /* */
 
   if( !_traverseHandleElementDown( iteration,iterator ) )
