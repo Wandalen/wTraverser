@@ -215,6 +215,7 @@ _traverser.defaults2 =
   technique : null,
   deserializing : 0,
 
+  onDate : null,
   onString : null,
   onRoutine : null,
   onBuffer : null,
@@ -321,6 +322,9 @@ function _traverseMap( iteration,iterator )
       debugger;
       continue;
     }
+
+    // if( _.dateIs( iteration.src[ key ] ) )
+    // debugger;
 
     var newIteration = iteration.iterationNew( key );
 
@@ -550,20 +554,21 @@ function _traverseAct( iteration,iterator )
     iterator.onString( iteration.src,iteration,iterator );
   }
 
+  /* date */
+
+  if( _.dateIs( iteration.src ) )
+  {
+    // debugger;
+    handled = 1;
+    if( iterator.onDate )
+    iterator.onDate( iteration.src,iteration,iterator );
+  }
+
   /* atomic */
 
   if( _.atomicIs( iteration.src ) )
   {
     handled = 1;
-  }
-
-  /* date */
-
-  if( _.dateIs( iteration.src ) )
-  {
-    handled = 1;
-    if( iterator.onDate )
-    iterator.onDate( iteration.src,iteration,iterator );
   }
 
   /* */
