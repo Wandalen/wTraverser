@@ -47,12 +47,12 @@ function trivial( test )
   // onInstanceCopy : null,
   // onContainerUp : null,
   // onContainerDown : null,
-  // onElementUp : null,
-  // onElementDown : null,
+  // onEntityUp : null,
+  // onEntityDown : null,
 //
   // onMapUp : () => true,
-  // onMapEntryUp : () => true,
-  // onMapEntryDown : () => true,
+  // onMapElementUp : () => true,
+  // onMapElementDown : () => true,
   // onArrayUp : () => true,
   // onBufferUp : () => true,
 
@@ -62,16 +62,16 @@ function trivial( test )
     onMapUpPaths.push( iteration.path );
   }
 
-  var onMapEntryUpPaths = [];
-  function onMapEntryUp( parent,child )
+  var onMapElementUpPaths = [];
+  function onMapElementUp( parent,child )
   {
-    onMapEntryUpPaths.push( child.path );
+    onMapElementUpPaths.push( child.path );
   }
 
-  var onMapEntryDownPaths = [];
-  function onMapEntryDown( parent,child )
+  var onMapElementDownPaths = [];
+  function onMapElementDown( parent,child )
   {
-    onMapEntryDownPaths.push( child.path );
+    onMapElementDownPaths.push( child.path );
   }
 
   var onArrayUpPaths = [];
@@ -89,8 +89,8 @@ function trivial( test )
   var r = _.traverse
   ({
     src : a,
-    onMapEntryUp : onMapEntryUp,
-    onMapEntryDown : onMapEntryDown,
+    onMapElementUp : onMapElementUp,
+    onMapElementDown : onMapElementDown,
     onArrayUp : onArrayUp,
     onBufferUp : onBufferUp,
     onMapUp : onMapUp,
@@ -98,8 +98,8 @@ function trivial( test )
   console.log( r );
 
   test.identical( onMapUpPaths,[ '/','/dir' ] );
-  test.identical( onMapEntryUpPaths,[ '/x', '/dir', '/dir/y', '/dir/z', '/buffer', '/array' ] );
-  test.identical( onMapEntryDownPaths,[ '/x', '/dir/y', '/dir/z', '/dir', '/buffer', '/array' ] );
+  test.identical( onMapElementUpPaths,[ '/x', '/dir', '/dir/y', '/dir/z', '/buffer', '/array' ] );
+  test.identical( onMapElementDownPaths,[ '/x', '/dir/y', '/dir/z', '/dir', '/buffer', '/array' ] );
   test.identical( onArrayUpPaths,[ '/array' ] );
   test.identical( onBufferUpPaths,[ '/buffer' ] );
 

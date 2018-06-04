@@ -33,6 +33,8 @@ var _ = _global_.wTools;
 
 var TraverseIterator = Object.create( null );
 
+//
+
 TraverseIterator.iterationClone = function iterationClone()
 {
   _.assert( arguments.length === 0 );
@@ -40,19 +42,61 @@ TraverseIterator.iterationClone = function iterationClone()
   return newIteration;
 }
 
+//
+
 TraverseIterator.iterationNew = function iterationNew( key )
 {
-  var result;
+  var it = this;
+  var iterator = this.iterator;
+  var result = Object.create( iterator );
 
   _.assert( arguments.length === 0 || arguments.length === 1 );
+  _.assert( _.numberIs( it.copyingDegree ) );
 
-  result = _traverseIterationInit( this,this.iterator );
+  result.iterationPrev = it;
+
+  if( it !== iterator )
+  {
+    result.path = null;
+    result.level = it.level;
+    result.copyingDegree = it.copyingDegree;
+
+    result.proto = null;
+    result.dst = null;
+    result.src = null;
+    result.key = null;
+
+    result.customFields = null;
+    result.dropFields = null;
+    result.screenFields = null;
+  }
+  else
+  {
+    result.level = iterator.level;
+    result.copyingDegree = iterator.copyingDegree;
+
+    result.proto = iterator.proto;
+    result.dst = iterator.dst;
+    result.src = iterator.src;
+    result.key = iterator.key;
+    result.path = iterator.path ? iterator.path : '/';
+
+    result.customFields = iterator.customFields;
+    result.dropFields = iterator.dropFields;
+    result.screenFields = iterator.screenFields;
+  }
+
+  /* */
+
+  _.assert( result.iterator );
 
   if( key !== undefined )
   result.select( key );
 
   return result;
 }
+
+//
 
 TraverseIterator.select = function select( key )
 {
@@ -86,59 +130,11 @@ function _traverseIterator( o )
   _.assert( iterator.level === 0 );
   _.assert( iterator.copyingDegree >= 0 );
   _.assert( iterator.iterator === iterator );
+  _.assertRoutineOptions( _traverseIterator,o );
 
   Object.preventExtensions( iterator );
 
   return iterator;
-}
-
-//
-
-function _traverseIterationInit( iteration,iterator )
-{
-  var result = Object.create( iterator );
-
-  _.assert( arguments.length === 2 );
-  _.assert( !iteration || _.numberIs( iteration.copyingDegree ) );
-
-  result.iterationPrev = iteration;
-
-  if( iteration !== iterator )
-  {
-    result.path = null;
-    result.level = iteration.level;
-    result.copyingDegree = iteration.copyingDegree;
-
-    result.proto = null;
-    result.dst = null;
-    result.src = null;
-    result.key = null;
-
-    result.customFields = null;
-    result.dropFields = null;
-    result.screenFields = null;
-  }
-  else
-  {
-    result.level = iterator.level;
-    result.copyingDegree = iterator.copyingDegree;
-
-    result.proto = iterator.proto;
-    result.dst = iterator.dst;
-    result.src = iterator.src;
-    result.key = iterator.key;
-    result.path = iterator.path ? iterator.path : '/';
-
-    result.customFields = iterator.customFields;
-    result.dropFields = iterator.dropFields;
-    result.screenFields = iterator.screenFields;
-  }
-
-  /* */
-
-  _.assert( result.iterator );
-
-  return result;
 }
 
 //
@@ -149,9 +145,9 @@ function _traverseIteration( o )
   _.assert( arguments.length === 1 );
 
   var iterator = _traverseIterator( o );
-  var iteration = iterator.iterationNew();;
+  var it = iterator.iterationNew();;
 
-  return iteration;
+  return it;
 }
 
 //
@@ -174,9 +170,17 @@ function _traverser( routine,o )
   o.iterationDefaults = routine.iterationDefaults;
   o.defaults = routine.defaults;
 
-  var iteration = _traverseIteration( o );
+  o.onMapUp = _.routinesComposeWhile( o.onMapUp );
+  o.onMapElementUp = _.routinesComposeWhile( o.onMapElementUp );
+  o.onMapElementDown = _.routinesCompose( o.onMapElementDown );
+  o.onArrayUp = _.routinesComposeWhile( o.onArrayUp );
+  o.onArrayElementUp = _.routinesComposeWhile( o.onArrayElementUp );
+  o.onArrayElementDown = _.routinesCompose( o.onArrayElementDown );
+  o.onBuffer = _.routinesComposeWhile( o.onBuffer );
 
-  return iteration;
+  var it = _traverseIteration( o );
+
+  return it;
 }
 
 _traverser.iterationDefaults =
@@ -198,7 +202,7 @@ _traverser.iterationDefaults =
 
 }
 
-_traverser.defaults2 =
+_traverser.defaults =
 {
 
   copyingComposes : 3,
@@ -215,42 +219,44 @@ _traverser.defaults2 =
   technique : null,
   deserializing : 0,
 
+  onEntityUp : null,
+  onEntityDown : null,
+  onContainerUp : null,
+  onContainerDown : null,
+
   onDate : null,
   onString : null,
   onRoutine : null,
   onBuffer : null,
   onInstanceCopy : null,
-  onContainerUp : null,
-  onContainerDown : null,
-  onElementUp : null,
-  onElementDown : null,
+
+  onMapUp : null,
+  onMapElementUp : null,
+  onMapElementDown : null,
+  onArrayUp : null,
+  onArrayElementUp : null,
+  onArrayElementDown : null,
 
 }
 
-_traverser.defaults =
-{
+_.mapExtend( _traverser.defaults, _traverser.iterationDefaults );
 
-  onMapUp : () => true,
-  onMapEntryUp : () => true,
-  onMapEntryDown : () => true,
-  onArrayUp : () => true,
-  onBufferUp : () => true,
-
-}
-
-_.mapExtend( _traverser.defaults2, _traverser.iterationDefaults );
-_.mapExtend( _traverser.defaults, _traverser.defaults2 );
+_traverseIterator.defaults = Object.create( _traverser.defaults );
+_traverseIterator.defaults.defaults = null;
+_traverseIterator.defaults.iterationDefaults = null;
 
 //
 
-function _traverseHandleElementUp( iteration,iterator )
+function _traverseEntityUp( it )
 {
 
-  if( iteration.onElementUp )
+  _.assert( arguments.length === 1 );
+
+  if( it.onEntityUp )
   {
-    var r = iteration.onElementUp( iteration.src,iteration,iterator );
-    _.assert( r === undefined || r === false );
-    if( r === false )
+    var c = it.onEntityUp( it );
+    _.assert( c === undefined || c === false );
+    if( c === false )
     return false;
   }
 
@@ -259,332 +265,315 @@ function _traverseHandleElementUp( iteration,iterator )
 
 //
 
-function _traverseHandleElementDown( iteration,iterator )
+function _traverseEntityDown( it )
 {
 
-  if( iteration.onElementDown )
+  _.assert( arguments.length === 1 );
+
+  if( it.onEntityDown )
   {
-    var r = iteration.onElementDown( iteration.dst,iteration,iterator );
-    _.assert( r === undefined || r === false );
-    if( r === false )
-    return false;
+    debugger;
+    var c = it.onEntityDown( it );
+    _.assert( c === undefined );
   }
 
-  return true;
 }
 
 //
 
-function _traverseMap( iteration,iterator )
+function _traverseMap( it )
 {
   var result;
 
-  _.assert( iteration.copyingDegree >= 1 );
-  _.assert( arguments.length === 2 );
-  _.assert( _.objectLike( iteration.src ) );
+  _.assert( it.copyingDegree >= 1 );
+  _.assert( arguments.length === 1 );
+  _.assert( _.objectLike( it.src ) );
 
   /* */
 
-  if( iterator.onContainerUp )
+  if( it.onContainerUp )
   {
-    var r = iterator.onContainerUp( iteration,iterator );
-    _.assert( r === undefined || r === false );
-    if( r === false )
-    return iteration.dst;
+    var c = it.onContainerUp( it );
+    _.assert( c === undefined || c === false );
+    if( c === false )
+    return it.dst;
   }
 
-  var c = iteration.onMapUp( iteration );
+  var c = it.onMapUp( it );
   if( c === false )
-  return iteration.dst;
+  return it.dst;
 
   /* */
 
-  var screen = iteration.screenFields ? iteration.screenFields : iteration.src;
+  var screen = it.screenFields ? it.screenFields : it.src;
 
-  if( iteration.copyingDegree )
+  if( it.copyingDegree )
   for( var key in screen )
   {
 
     if( screen[ key ] === undefined )
     continue;
 
-    if( iteration.src[ key ] === undefined )
+    if( it.src[ key ] === undefined )
     continue;
 
-    if( iteration.dropFields )
-    if( iteration.dropFields[ key ] !== undefined )
+    if( it.dropFields )
+    if( it.dropFields[ key ] !== undefined )
     continue;
 
-    var mapLike = _.mapLike( iteration.src ) || iteration.instanceAsMap;
-    if( !mapLike && !iteration.screenFields )
-    if( !Object.hasOwnProperty.call( iteration.src,key ) )
+    var mapLike = _.mapLike( it.src ) || it.instanceAsMap;
+    if( !mapLike && !it.screenFields )
+    if( !Object.hasOwnProperty.call( it.src,key ) )
     {
       debugger;
       continue;
     }
 
-    // if( _.dateIs( iteration.src[ key ] ) )
-    // debugger;
+    var newIteration = it.iterationNew( key );
 
-    var newIteration = iteration.iterationNew( key );
+    if( it.onMapElementUp( it,newIteration ) === false )
+    continue;
 
-    iteration.onMapEntryUp( iteration,newIteration );
+    _traverseAct( newIteration );
 
-    _traverseAct( newIteration,iterator );
-
-    iteration.onMapEntryDown( iteration,newIteration );
+    it.onMapElementDown( it,newIteration );
 
   }
 
   /* container down */
 
-  if( iterator.onContainerDown )
+  if( it.onContainerDown )
   {
-    var r = iterator.onContainerDown( iteration,iterator );
-    _.assert( r === undefined );
+    var c = it.onContainerDown( it );
+    _.assert( c === undefined );
   }
 
   /* */
 
-  return iteration.dst;
+  return it.dst;
 }
 
 //
 
-function _traverseArray( iteration,iterator )
+function _traverseArray( it )
 {
 
-  _.assert( iteration.copyingDegree >= 1 );
-  _.assert( arguments.length === 2 );
-  _.assert( _.arrayLike( iteration.src ) );
-  _.assert( !_.bufferAnyIs( iteration.src ) );
+  _.assert( it.copyingDegree >= 1 );
+  _.assert( arguments.length === 1 );
+  _.assert( _.arrayLike( it.src ) );
+  _.assert( !_.bufferAnyIs( it.src ) );
 
   /* */
 
-  if( iterator.onContainerUp )
+  if( it.onContainerUp )
   {
-    var r = iterator.onContainerUp( iteration,iterator );
-    _.assert( r === undefined || r === false );
-    if( r === false )
-    return iteration.dst;
+    var c = it.onContainerUp( it );
+    _.assert( c === undefined || c === false );
+    if( c === false )
+    return it.dst;
   }
 
-  var c = iteration.onArrayUp( iteration );
+  var c = it.onArrayUp( it );
   if( c === false )
-  return iteration.dst;
+  return it.dst;
 
-  if( iteration.copyingDegree )
-  if( iteration.dst )
+  /* */
+
+  if( it.copyingDegree > 1 )
   {
-    for( var key = 0 ; key < iteration.src.length ; key++ )
+    for( var key = 0 ; key < it.src.length ; key++ )
     {
-      var newIteration = iteration.iterationNew( key );
-      iteration.dst[ key ] = _traverseAct( newIteration,iterator );
+      var newIteration = it.iterationNew( key );
+
+      if( it.onArrayElementUp( it,newIteration ) === false )
+      continue;
+
+      _traverseAct( newIteration );
+
+      it.onArrayElementDown( it,newIteration );
     }
   }
   else
   {
-    for( var key = 0 ; key < iteration.src.length ; key++ )
-    {
-      var newIteration = iteration.iterationNew( key );
-      _traverseAct( newIteration,iterator );
-    }
+    debugger;
   }
 
   /* container down */
 
-  if( iterator.onContainerDown )
+  if( it.onContainerDown )
   {
-    var r = iterator.onContainerDown( iteration,iterator );
-    _.assert( r === undefined );
+    var c = it.onContainerDown( it );
+    _.assert( c === undefined );
   }
 
-  return iteration.dst;
+  return it.dst;
 }
 
 //
 
-function _traverseBuffer( iteration,iterator )
+function _traverseBuffer( it )
 {
-  iteration.copyingDegree = Math.min( iterator.copyingBuffers,iteration.copyingDegree );
+  it.copyingDegree = Math.min( it.copyingBuffers,it.copyingDegree );
 
-  _.assert( iteration.copyingDegree >= 1,'not tested' );
-  _.assert( !_.bufferNodeIs( iteration.src ),'not tested' );
-  _.assert( arguments.length === 2 );
-  _.assert( _.bufferAnyIs( iteration.src ) );
+  _.assert( it.copyingDegree >= 1,'not tested' );
+  _.assert( !_.bufferNodeIs( it.src ),'not tested' );
+  _.assert( arguments.length === 1 );
+  _.assert( _.bufferAnyIs( it.src ) );
+  _.assert( it.copyingDegree );
 
-  if( !iteration.copyingDegree )
-  debugger;
-
-  if( !iteration.copyingDegree )
-  return;
-
-  if( iterator.onContainerUp )
+  if( it.onContainerUp )
   {
-    var r = iterator.onContainerUp( iteration,iterator );
-    _.assert( r === undefined || r === false );
-    if( r === false )
-    return iteration.dst;
+    var c = it.onContainerUp( it );
+    _.assert( c === undefined || c === false );
+    if( c === false )
+    return it.dst;
   }
 
   /* buffer */
 
-  var c = iteration.onBufferUp( iteration );
+  var c = it.onBuffer( it.src, it );
   if( c === false )
-  return iteration.dst;
-
-  /* */
-
-  if( iterator.onBuffer )
-  {
-    var r = iterator.onBuffer( iteration.dst,iteration,iterator );
-    _.assert( r === undefined );
-  }
+  return it.dst;
 
   /* container down */
 
-  if( iterator.onContainerDown )
+  if( it.onContainerDown )
   {
     debugger;
-    var r = iterator.onContainerDown( iteration,iterator );
-    _.assert( r === undefined );
+    var c = it.onContainerDown( it );
+    _.assert( c === undefined );
   }
 
-  return iteration.dst;
+  return it.dst;
 }
 
 //
 
-function _traverseAct( iteration,iterator )
+function _traverseAct( it )
 {
   var handled = 0;
 
-  _.assert( arguments.length === 2 );
-  _.assert( iteration.level >= 0 );
-  _.assert( iteration.copyingDegree > 0 );
-  _.assert( _.strIs( iteration.path ) );
-  _.assert( !( _.objectLike( iteration.src ) && _.arrayLike( iteration.src ) ) );
+  _.assert( arguments.length === 1 );
+  _.assert( it.level >= 0 );
+  _.assert( it.copyingDegree > 0 );
+  _.assert( it.iterator );
+  _.assert( _.strIs( it.path ) );
+  _.assert( !( _.objectLike( it.src ) && _.arrayLike( it.src ) ) );
 
-  // iteration.level += 1;
-
-  if( !( iteration.level <= iterator.levels ) )
+  if( !( it.level <= it.iterator.levels ) )
   throw _.err
   (
-    'failed to traverse structure',_.strTypeOf( iterator.rootSrc ) +
-    '\nat ' + iteration.path +
+    'failed to traverse structure',_.strTypeOf( it.iterator.rootSrc ) +
+    '\nat ' + it.path +
     '\ntoo deep structure' +
-    '\nrootSrc : ' + _.toStr( iterator.rootSrc ) +
-    '\niteration : ' + _.toStr( iteration ) +
-    '\niterator : ' + _.toStr( iterator )
+    '\nrootSrc : ' + _.toStr( it.iterator.rootSrc ) +
+    '\niteration : ' + _.toStr( it ) +
+    '\niterator : ' + _.toStr( it.iterator )
   );
 
   /* */
 
-  if( !_._traverseHandleElementUp( iteration,iterator ) )
-  return iteration.dst;
+  if( !_._traverseEntityUp( it ) )
+  return it.dst;
 
   /* class instance */
 
-  if( iteration.copyingDegree > 1 && iteration.usingInstanceCopy )
+  if( it.copyingDegree > 1 && it.usingInstanceCopy )
   {
 
-    if( iteration.onInstanceCopy )
+    if( it.onInstanceCopy )
     {
-      iteration.onInstanceCopy( iteration,iterator );
+      it.onInstanceCopy( it.src, it );
     }
 
-    if( iteration.dst && iteration.dst._traverseAct )
+    if( _.instanceLike( it.dst ) && _.routineIs( it.dst._traverseAct ) )
     {
-      iteration.dst._traverseAct( iteration,iterator );
-      return iteration.dst;
+      it.dst._traverseAct( it );
+      return it.dst;
     }
-    else if( iteration.src && iteration.src._traverseAct )
+    else if( _.instanceLike( it.src ) && _.routineIs( it.src._traverseAct ) )
     {
-      iteration.src._traverseAct( iteration,iterator );
-      return iteration.dst;
+      it.src._traverseAct( it );
+      return it.dst;
     }
 
   }
 
   /* object like */
 
-  if( _.objectLike( iteration.src ) )
+  if( _.objectLike( it.src ) )
   {
     handled = 1;
-    _._traverseMap( iteration,iterator );
+    _._traverseMap( it );
   }
 
   /* array like */
 
-  var bufferTypedIs = _.bufferAnyIs( iteration.src );
-  if( _.arrayLike( iteration.src ) && !bufferTypedIs )
+  var bufferAnyIs = _.bufferAnyIs( it.src );
+  if( _.arrayLike( it.src ) && !bufferAnyIs )
   {
     handled = 1;
-    _._traverseArray( iteration,iterator );
+    _._traverseArray( it );
   }
 
   /* buffer like */
 
-  if( bufferTypedIs )
+  if( bufferAnyIs )
   {
     handled = 1;
-    _._traverseBuffer( iteration,iterator );
+    _._traverseBuffer( it );
   }
-
-  if( iteration.dst === null )
-  iteration.dst = iteration.src;
 
   /* routine */
 
-  if( _.routineIs( iteration.src ) )
+  if( _.routineIs( it.src ) )
   {
     handled = 1;
-    if( iterator.onRoutine )
-    debugger;
-    if( iterator.onRoutine )
-    iterator.onRoutine( iteration.src,iteration,iterator );
+    if( it.onRoutine )
+    it.onRoutine( it.src,it );
   }
 
   /* string */
 
-  if( _.strIs( iteration.src ) )
+  if( _.strIs( it.src ) )
   {
     handled = 1;
-    if( iterator.onString )
-    iterator.onString( iteration.src,iteration,iterator );
+    if( it.onString )
+    it.onString( it.src,it );
   }
 
   /* date */
 
-  if( _.dateIs( iteration.src ) )
+  if( _.dateIs( it.src ) )
   {
-    // debugger;
     handled = 1;
-    if( iterator.onDate )
-    iterator.onDate( iteration.src,iteration,iterator );
+    if( it.onDate )
+    it.onDate( it.src,it );
   }
 
   /* atomic */
 
-  if( _.atomicIs( iteration.src ) )
+  if( _.primitiveIs( it.src ) )
   {
     handled = 1;
   }
 
-  /* */
-
-  if( !_traverseHandleElementDown( iteration,iterator ) )
-  return iteration.dst;
+  if( it.dst === null )
+  it.dst = it.src;
 
   /* */
 
-  if( !handled && iteration.copyingDegree > 1 )
+  if( !handled && it.copyingDegree > 1 )
   {
     debugger;
-    throw _.err( 'unknown type of src : ' + _.strTypeOf( iteration.src ) );
+    _.assert( 0,'unknown type of src : ' + _.strTypeOf( it.src ) );
   }
 
-  return iteration.dst;
+  /* */
+
+  _traverseEntityDown( it );
+
+  return it.dst;
 }
 
 // --
@@ -593,18 +582,12 @@ function _traverseAct( iteration,iterator )
 
 function traverse( o )
 {
-  debugger;
-  var iteration = _._traverser( traverse,o );
-  debugger;
-  var result = _._traverseAct( iteration, iteration.iterator );
+  var it = _._traverser( traverse,o );
+  var result = _._traverseAct( it );
   return result;
 }
 
-traverse.defaults =
-{
-}
-
-traverse.defaults.__proto__ = _traverser.defaults;
+traverse.defaults = Object.create( _traverser.defaults );
 
 // --
 // prototype
@@ -615,10 +598,10 @@ var Proto =
 
   _traverseIterator : _traverseIterator,
   _traverseIteration : _traverseIteration,
-  _traverser : _traverser,
 
-  _traverseHandleElementUp : _traverseHandleElementUp,
-  _traverseHandleElementDown : _traverseHandleElementDown,
+  _traverser : _traverser,
+  _traverseEntityUp : _traverseEntityUp,
+  _traverseEntityDown : _traverseEntityDown,
 
   _traverseMap : _traverseMap,
   _traverseArray : _traverseArray,
