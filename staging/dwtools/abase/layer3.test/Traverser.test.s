@@ -54,7 +54,7 @@ function trivial( test )
   // onMapElementUp : () => true,
   // onMapElementDown : () => true,
   // onArrayUp : () => true,
-  // onBufferUp : () => true,
+  // onBuffer : () => true,
 
   var onMapUpPaths = [];
   function onMapUp( iteration )
@@ -80,19 +80,19 @@ function trivial( test )
     onArrayUpPaths.push( iteration.path );
   }
 
-  var onBufferUpPaths = [];
-  function onBufferUp( iteration )
+  var onBufferPaths = [];
+  function onBuffer( iteration )
   {
-    onBufferUpPaths.push( iteration.path );
+    onBufferPaths.push( iteration.path );
   }
 
   var r = _.traverse
   ({
     src : a,
+    onBuffer : onBuffer,
     onMapElementUp : onMapElementUp,
     onMapElementDown : onMapElementDown,
     onArrayUp : onArrayUp,
-    onBufferUp : onBufferUp,
     onMapUp : onMapUp,
   })
   console.log( r );
@@ -101,7 +101,7 @@ function trivial( test )
   test.identical( onMapElementUpPaths,[ '/x', '/dir', '/dir/y', '/dir/z', '/buffer', '/array' ] );
   test.identical( onMapElementDownPaths,[ '/x', '/dir/y', '/dir/z', '/dir', '/buffer', '/array' ] );
   test.identical( onArrayUpPaths,[ '/array' ] );
-  test.identical( onBufferUpPaths,[ '/buffer' ] );
+  test.identical( onBufferPaths,[ '/buffer' ] );
 
 }
 
