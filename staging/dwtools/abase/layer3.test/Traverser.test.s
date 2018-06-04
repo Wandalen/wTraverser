@@ -81,7 +81,7 @@ function trivial( test )
   }
 
   var onBufferPaths = [];
-  function onBuffer( iteration )
+  function onBuffer( src,iteration )
   {
     onBufferPaths.push( iteration.path );
   }
