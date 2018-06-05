@@ -1,4 +1,4 @@
-( function _Taverser_s_() {
+( function _bTaverser_s_() {
 
 'use strict';
 
