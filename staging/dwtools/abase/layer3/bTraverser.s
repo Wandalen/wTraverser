@@ -590,7 +590,7 @@ function traverse( o )
 traverse.defaults = Object.create( _traverser.defaults );
 
 // --
-// prototype
+// define class
 // --
 
 var Proto =
