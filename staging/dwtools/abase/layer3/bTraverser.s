@@ -160,7 +160,7 @@ function _traverser( routine,o )
   _.assert( routine.iterationDefaults );
   _.assert( !routine.iteratorDefaults );
   _.assert( routine.defaults );
-  _.assert( arguments.length === 2, 'expects exactly two argument' );
+  _.assert( arguments.length === 2, 'expects exactly two arguments' );
   _.routineOptions( routine,o );
   _.assertMapHasNoUndefine( o );
   _.assert( _.objectIs( o ) );
