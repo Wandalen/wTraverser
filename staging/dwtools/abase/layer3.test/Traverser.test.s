@@ -30,7 +30,8 @@ if( typeof module !== 'undefined' )
 
 }
 
-var _global = _global_; var _ = _global_.wTools;
+var _global = _global_;
+var _ = _global_.wTools;
 
 // --
 // test
@@ -112,7 +113,7 @@ function trivial( test )
 var Self =
 {
 
-  name : 'Traverser',
+  name : 'Tools/base/layer3/Traverser',
   silencing : 1,
 
   tests :
