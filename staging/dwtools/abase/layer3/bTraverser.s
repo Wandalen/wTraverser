@@ -57,6 +57,8 @@ TraverseIterator.iterationNew = function iterationNew( key )
 
   if( it !== iterator )
   {
+    result.down = it;
+
     result.path = null;
     result.level = it.level;
     result.copyingDegree = it.copyingDegree;
@@ -72,6 +74,8 @@ TraverseIterator.iterationNew = function iterationNew( key )
   }
   else
   {
+    result.down = null;
+
     result.level = iterator.level;
     result.copyingDegree = iterator.copyingDegree;
 
@@ -325,7 +329,7 @@ function _traverseMap( it )
     if( !mapLike && !it.screenFields )
     if( !Object.hasOwnProperty.call( it.src,key ) )
     {
-      debugger;
+      // debugger;
       continue;
     }
 
