@@ -364,7 +364,7 @@ function _traverseArray( it )
 
   _.assert( it.copyingDegree >= 1 );
   _.assert( arguments.length === 1, 'expects single argument' );
-  _.assert( _.arrayLike( it.src ) );
+  _.assert( _.longIs( it.src ) );
   _.assert( !_.bufferAnyIs( it.src ) );
 
   /* */
@@ -462,7 +462,7 @@ function _traverseAct( it )
   _.assert( it.copyingDegree > 0 );
   _.assert( it.iterator );
   _.assert( _.strIs( it.path ) );
-  _.assert( !( _.objectLike( it.src ) && _.arrayLike( it.src ) ) );
+  _.assert( !( _.objectLike( it.src ) && _.longIs( it.src ) ) );
 
   if( !( it.level <= it.iterator.levels ) )
   throw _.err
@@ -514,7 +514,7 @@ function _traverseAct( it )
   /* array like */
 
   var bufferAnyIs = _.bufferAnyIs( it.src );
-  if( _.arrayLike( it.src ) && !bufferAnyIs )
+  if( _.longIs( it.src ) && !bufferAnyIs )
   {
     handled = 1;
     _._traverseArray( it );
