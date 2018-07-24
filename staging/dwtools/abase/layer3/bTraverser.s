@@ -174,13 +174,13 @@ function _traverser( routine,o )
   o.iterationDefaults = routine.iterationDefaults;
   o.defaults = routine.defaults;
 
-  o.onMapUp = _.routinesComposeWhile( o.onMapUp );
-  o.onMapElementUp = _.routinesComposeWhile( o.onMapElementUp );
+  o.onMapUp = _.routinesComposeEvery( o.onMapUp );
+  o.onMapElementUp = _.routinesComposeEvery( o.onMapElementUp );
   o.onMapElementDown = _.routinesCompose( o.onMapElementDown );
-  o.onArrayUp = _.routinesComposeWhile( o.onArrayUp );
-  o.onArrayElementUp = _.routinesComposeWhile( o.onArrayElementUp );
+  o.onArrayUp = _.routinesComposeEvery( o.onArrayUp );
+  o.onArrayElementUp = _.routinesComposeEvery( o.onArrayElementUp );
   o.onArrayElementDown = _.routinesCompose( o.onArrayElementDown );
-  o.onBuffer = _.routinesComposeWhile( o.onBuffer );
+  o.onBuffer = _.routinesComposeEvery( o.onBuffer );
 
   var it = _traverseIteration( o );
 
