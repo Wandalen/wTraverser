@@ -92,7 +92,7 @@ TraverseIterator.iterationNew = function iterationNew( key )
 
   /* */
 
-  _.assert( result.iterator );
+  _.assert( _.objectIs( result.iterator ) );
 
   if( key !== undefined )
   result.select( key );
@@ -161,9 +161,9 @@ function _traverser( routine,o )
   var routine = _traverser;
 
   _.assert( _.routineIs( routine ) );
-  _.assert( routine.iterationDefaults );
+  _.assert( _.objectIs( routine.iterationDefaults ) );
   _.assert( !routine.iteratorDefaults );
-  _.assert( routine.defaults );
+  _.assert( _.objectIs( routine.defaults ) );
   _.assert( arguments.length === 2, 'expects exactly two arguments' );
   _.routineOptions( routine,o );
   _.assertMapHasNoUndefine( o );
@@ -460,7 +460,7 @@ function _traverseAct( it )
   _.assert( arguments.length === 1, 'expects single argument' );
   _.assert( it.level >= 0 );
   _.assert( it.copyingDegree > 0 );
-  _.assert( it.iterator );
+  _.assert( _.objectIs( it.iterator ) );
   _.assert( _.strIs( it.path ) );
   _.assert( !( _.objectLike( it.src ) && _.longIs( it.src ) ) );
 
