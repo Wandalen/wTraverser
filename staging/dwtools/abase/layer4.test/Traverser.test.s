@@ -26,7 +26,7 @@ if( typeof module !== 'undefined' )
 
   _.include( 'wTesting' );
 
-  require( '../layer3/bTraverser.s' );
+  require( '../layer4/Traverser.s' );
 
 }
 
@@ -113,7 +113,7 @@ function trivial( test )
 var Self =
 {
 
-  name : 'Tools/base/layer3/Traverser',
+  name : 'Tools/base/layer4/Traverser',
   silencing : 1,
 
   tests :
