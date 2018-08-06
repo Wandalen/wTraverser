@@ -239,6 +239,7 @@ _traverser.defaults =
 
   onDate : null,
   onString : null,
+  onRegExp : null,
   onRoutine : null,
   onBuffer : null,
   onInstanceCopy : null,
@@ -512,6 +513,8 @@ function _traverseAct( it )
 
   }
 
+  /* !!! else if required here */
+
   /* object like */
 
   if( _.objectLike( it.src ) )
@@ -553,6 +556,15 @@ function _traverseAct( it )
     handled = 1;
     if( it.onString )
     it.onString( it.src,it );
+  }
+
+  /* string */
+
+  if( _.regexpIs( it.src ) )
+  {
+    handled = 1;
+    if( it.onRegExp )
+    it.onRegExp( it.src,it );
   }
 
   /* date */
