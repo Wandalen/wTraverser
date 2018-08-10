@@ -107,7 +107,7 @@ function trivial( test )
 }
 
 // --
-// define class
+// declare
 // --
 
 var Self =
