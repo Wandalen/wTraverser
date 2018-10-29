@@ -58,33 +58,38 @@ function trivial( test )
   // onBuffer : () => true,
 
   var onMapUpPaths = [];
-  function onMapUp( iteration )
+  function onMapUp( it )
   {
-    onMapUpPaths.push( iteration.path );
+    onMapUpPaths.push( it.path );
+    return it;
   }
 
   var onMapElementUpPaths = [];
-  function onMapElementUp( parent,child )
+  function onMapElementUp( parent, child )
   {
     onMapElementUpPaths.push( child.path );
+    return child;
   }
 
   var onMapElementDownPaths = [];
-  function onMapElementDown( parent,child )
+  function onMapElementDown( parent, child )
   {
     onMapElementDownPaths.push( child.path );
+    return child;
   }
 
   var onArrayUpPaths = [];
-  function onArrayUp( iteration )
+  function onArrayUp( it )
   {
-    onArrayUpPaths.push( iteration.path );
+    onArrayUpPaths.push( it.path );
+    return it;
   }
 
   var onBufferPaths = [];
-  function onBuffer( src,iteration )
+  function onBuffer( src,it )
   {
-    onBufferPaths.push( iteration.path );
+    onBufferPaths.push( it.path );
+    return it;
   }
 
   var r = _.traverse
