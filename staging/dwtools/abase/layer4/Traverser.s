@@ -113,7 +113,7 @@ TraverseIterator.iterationNew = function iterationNew( key )
 
 TraverseIterator.select = function select( key )
 {
-  _.assert( arguments.length === 1, 'expects single argument' );
+  _.assert( arguments.length === 1, 'Expects single argument' );
   _.assert( this.path === null );
 
   this.src = this.iterationPrev.src[ key ];
@@ -139,7 +139,7 @@ function _traverseIterator( o )
   iterator.rootSrc = o.rootSrc || o.src;
   iterator.iterator = iterator;
 
-  _.assert( arguments.length === 1, 'expects single argument' );
+  _.assert( arguments.length === 1, 'Expects single argument' );
   _.assert( iterator.level === 0 );
   _.assert( iterator.copyingDegree >= 0 );
   _.assert( iterator.iterator === iterator );
@@ -155,7 +155,7 @@ function _traverseIterator( o )
 function _traverseIteration( o )
 {
   _.assert( _.mapIs( o ) );
-  _.assert( arguments.length === 1, 'expects single argument' );
+  _.assert( arguments.length === 1, 'Expects single argument' );
 
   var iterator = _traverseIterator( o );
   var it = iterator.iterationNew();;
@@ -264,7 +264,7 @@ _traverseIterator.defaults.iterationDefaults = null;
 function _traverseEntityUp( it )
 {
 
-  _.assert( arguments.length === 1, 'expects single argument' );
+  _.assert( arguments.length === 1, 'Expects single argument' );
 
   if( it.onEntityUp )
   {
@@ -282,7 +282,7 @@ function _traverseEntityUp( it )
 function _traverseEntityDown( it )
 {
 
-  _.assert( arguments.length === 1, 'expects single argument' );
+  _.assert( arguments.length === 1, 'Expects single argument' );
 
   if( it.onEntityDown )
   {
@@ -300,7 +300,7 @@ function _traverseMap( it )
   var result;
 
   _.assert( it.copyingDegree >= 1 );
-  _.assert( arguments.length === 1, 'expects single argument' );
+  _.assert( arguments.length === 1, 'Expects single argument' );
   _.assert( _.objectLike( it.src ) );
 
   /* */
@@ -377,7 +377,7 @@ function _traverseArray( it )
 {
 
   _.assert( it.copyingDegree >= 1 );
-  _.assert( arguments.length === 1, 'expects single argument' );
+  _.assert( arguments.length === 1, 'Expects single argument' );
   _.assert( _.longIs( it.src ) );
   _.assert( !_.bufferAnyIs( it.src ) );
 
@@ -435,7 +435,7 @@ function _traverseBuffer( it )
 
   _.assert( it.copyingDegree >= 1,'not tested' );
   _.assert( !_.bufferNodeIs( it.src ),'not tested' );
-  _.assert( arguments.length === 1, 'expects single argument' );
+  _.assert( arguments.length === 1, 'Expects single argument' );
   _.assert( _.bufferAnyIs( it.src ) );
   _.assert( it.copyingDegree );
 
@@ -471,7 +471,7 @@ function _traverseAct( it )
 {
   var handled = 0;
 
-  _.assert( arguments.length === 1, 'expects single argument' );
+  _.assert( arguments.length === 1, 'Expects single argument' );
   _.assert( it.level >= 0 );
   _.assert( it.copyingDegree > 0 );
   _.assert( _.objectIs( it.iterator ) );
