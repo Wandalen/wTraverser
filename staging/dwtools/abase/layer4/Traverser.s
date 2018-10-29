@@ -173,7 +173,7 @@ function _traverser( routine,o )
   _.assert( _.objectIs( routine.iterationDefaults ) );
   _.assert( !routine.iteratorDefaults );
   _.assert( _.objectIs( routine.defaults ) );
-  _.assert( arguments.length === 2, 'expects exactly two arguments' );
+  _.assert( arguments.length === 2, 'Expects exactly two arguments' );
   _.routineOptions( routine,o );
   _.assertMapHasNoUndefine( o );
   _.assert( _.objectIs( o ) );
@@ -312,6 +312,10 @@ function _traverseMap( it )
     if( c === false )
     return it.dst;
   }
+
+  // debugger;
+  // if( it.screenFields && it.screenFields.importanceOfDetails !== undefined )
+  // debugger;
 
   var c = it.onMapUp( it );
   if( c === false )
@@ -486,6 +490,9 @@ function _traverseAct( it )
   );
 
   /* */
+
+  // if( it.path === '/output' )
+  // debugger;
 
   if( !_._traverseEntityUp( it ) )
   return it.dst;
