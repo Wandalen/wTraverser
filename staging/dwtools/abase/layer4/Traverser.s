@@ -318,7 +318,8 @@ function _traverseMap( it )
   // debugger;
 
   var c = it.onMapUp( it );
-  if( c === false )
+  _.assert( c === false || _.arrayIs( c ) || c === _.dont );
+  if( c === false || c === _.dont )
   return it.dst;
 
   /* */
@@ -349,7 +350,9 @@ function _traverseMap( it )
 
     var newIteration = it.iterationNew( key );
 
-    if( it.onMapElementUp( it,newIteration ) === false )
+    let c = it.onMapElementUp( it, newIteration ) ;
+    _.assert( c === false || c === _.dont || _.arrayIs( c ) );
+    if( c === false || c === _.dont )
     continue;
 
     _traverseAct( newIteration );
@@ -392,6 +395,7 @@ function _traverseArray( it )
   }
 
   var c = it.onArrayUp( it );
+  _.assert( c === false || _.arrayIs( c ) );
   if( c === false )
   return it.dst;
 
@@ -450,6 +454,7 @@ function _traverseBuffer( it )
   /* buffer */
 
   var c = it.onBuffer( it.src, it );
+  _.assert( c === false );
   if( c === false )
   return it.dst;
 
