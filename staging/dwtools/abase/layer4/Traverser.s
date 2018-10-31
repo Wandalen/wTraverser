@@ -139,6 +139,21 @@ function _traverseIterator( o )
   iterator.rootSrc = o.rootSrc || o.src;
   iterator.iterator = iterator;
 
+  iterator.compactField = iterator.compactField || function isEmpty( it, eit )
+  {
+    xxx
+    if( it.proto && it.proto.compactField )
+    {
+      return it.proto.compactField.call( it.src, eit.key );
+    }
+    else
+    {
+      if( eit.dst === null || eit.dst === undefined )
+      return;
+    }
+    return eit.dst;
+  }
+
   _.assert( arguments.length === 1, 'Expects single argument' );
   _.assert( iterator.level === 0 );
   _.assert( iterator.copyingDegree >= 0 );
@@ -210,6 +225,7 @@ _traverser.iterationDefaults =
   screenFields : null,
   instanceAsMap : 0,
   usingInstanceCopy : 1,
+  compact : 0,
 
   copyingDegree : 3,
 
@@ -243,6 +259,7 @@ _traverser.defaults =
   onRoutine : null,
   onBuffer : null,
   onInstanceCopy : null,
+  compactField : null,
 
   onMapUp : null,
   onMapElementUp : null,
