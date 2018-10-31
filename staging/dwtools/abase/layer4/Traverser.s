@@ -471,7 +471,7 @@ function _traverseBuffer( it )
   /* buffer */
 
   var c = it.onBuffer( it.src, it );
-  _.assert( c === false );
+  _.assert( c === false || _.arrayIs( c ) );
   if( c === false )
   return it.dst;
 
