@@ -139,12 +139,11 @@ function _traverseIterator( o )
   iterator.rootSrc = o.rootSrc || o.src;
   iterator.iterator = iterator;
 
-  iterator.compactField = iterator.compactField || function isEmpty( it, eit )
+  iterator.onCompactField = iterator.onCompactField || function compact( it, eit )
   {
-    xxx
     if( it.proto && it.proto.compactField )
     {
-      return it.proto.compactField.call( it.src, eit.key );
+      return it.proto.compactField.call( it.src, eit );
     }
     else
     {
@@ -259,7 +258,7 @@ _traverser.defaults =
   onRoutine : null,
   onBuffer : null,
   onInstanceCopy : null,
-  compactField : null,
+  onCompactField : null,
 
   onMapUp : null,
   onMapElementUp : null,
@@ -334,6 +333,9 @@ function _traverseMap( it )
   // if( it.screenFields && it.screenFields.importanceOfDetails !== undefined )
   // debugger;
 
+  if( _.strHas( it.path, 'excludeAny' ) )
+  debugger;
+
   var c = it.onMapUp( it );
   _.assert( c === false || _.arrayIs( c ) || c === _.dont );
   if( c === false || c === _.dont )
@@ -367,6 +369,9 @@ function _traverseMap( it )
 
     var newIteration = it.iterationNew( key );
 
+    // if( _.strEnds( newIteration.path, 'srcFilter' ) && it.compact )
+    // debugger;
+
     let c = it.onMapElementUp( it, newIteration ) ;
     _.assert( c === false || c === _.dont || _.arrayIs( c ) );
     if( c === false || c === _.dont )
@@ -374,7 +379,10 @@ function _traverseMap( it )
 
     _traverseAct( newIteration );
 
-    it.onMapElementDown( it,newIteration );
+    // if( _.strEnds( newIteration.path, 'srcFilter' ) && it.compact )
+    // debugger;
+
+    it.onMapElementDown( it, newIteration );
 
   }
 
