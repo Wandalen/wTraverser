@@ -1,0 +1,52 @@
+
+about :
+
+  name : wTraverser
+  description : Collection of routines to traverse data structures, no matter how compex and cycled them are.  Traverser may be used to inspect data, make some transformation or duplication. Traverser relies on class relations definition for traversing. Use the module to traverse your data.
+  version : 0.3.37
+  enabled : 1
+  interpreters :
+  - nodejs >= 6.0.0
+  - chrome >= 60.0.0
+  - firefox >= 60.0.0
+  keywords :
+  - wTools
+
+execution :
+
+  scripts :
+    test : wtest staging
+    docgen : wdocgen staging
+
+path :
+
+  repository : git+https://github.com/Wandalen/wTraverser.git
+  bugs : https://github.com/Wandalen/wTraverser/issues
+  entry.debug : {path::out.debug}/dwtools/abase/____
+  entry.release : {path::out.release}/dwtools/abase/____
+
+build :
+
+  .debug.raw.export :
+    default : 1
+    setting :
+      debug : 1
+      raw : 1
+      export : 1
+      filesPath : path::out.debug
+      entryPath : path::entry.debug
+    steps :
+      - build::.debug
+      - step::export
+
+  .release.compiled.export :
+    setting :
+      debug : 0
+      raw : 0
+      export : 1
+      filesPath : path::out.release
+      entryPath : path::entry.release
+    steps :
+      - build::.release.compiled
+      - step::export
+
