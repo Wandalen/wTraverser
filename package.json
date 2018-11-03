@@ -4,13 +4,13 @@
   "description": "Collection of routines to traverse data structures, no matter how compex and cycled them are.  Traverser may be used to inspect data, make some transformation or duplication. Traverser relies on class relations definition for traversing. Use the module to traverse your data.",
   "author": "Kostiantyn Wandalen <wanalen@willbe.so>",
   "license": "MIT",
-  "main": "staging/dwtools/abase/layer4/Traverser.s",
+  "main": "proto/dwtools/abase/l4/Traverser.s",
   "files": [
-    "staging/dwtools/abase/layer4",
+    "proto/dwtools/abase/l4",
     "production"
   ],
   "scripts": {
-    "test": "wtest staging",
+    "test": "wtest proto",
     "make_doc": "./doc.sh"
   },
   "repository": {

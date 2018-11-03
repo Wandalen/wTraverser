@@ -26,7 +26,7 @@ if( typeof module !== 'undefined' )
 
   _.include( 'wTesting' );
 
-  require( '../layer4/Traverser.s' );
+  require( '../l4/Traverser.s' );
 
 }
 
@@ -118,7 +118,7 @@ function trivial( test )
 var Self =
 {
 
-  name : 'Tools/base/layer4/Traverser',
+  name : 'Tools/base/l4/Traverser',
   silencing : 1,
 
   tests :
@@ -134,6 +134,6 @@ var Self =
 
 Self = wTestSuite( Self );
 if( typeof module !== 'undefined' && !module.parent )
-_.Tester.test( Self.name );
+/*_.*/wTester.test( Self.name );
 
 } )( );
