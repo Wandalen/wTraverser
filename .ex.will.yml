@@ -1,9 +1,10 @@
 
+
 about :
 
   name : wTraverser
-  description : Collection of routines to traverse data structures, no matter how compex and cycled them are.  Traverser may be used to inspect data, make some transformation or duplication. Traverser relies on class relations definition for traversing. Use the module to traverse your data.
-  version : 0.3.38
+  description : Collection of routines to traverse data structures, no matter how compex and cycled them are. Traverser may be used to inspect data, make some transformation or duplication. Traverser relies on class relations definition for traversing. Use the module to traverse your data.
+  version : 0.3.50
   enabled : 1
   interpreters :
   - nodejs >= 6.0.0
@@ -22,31 +23,34 @@ path :
 
   repository : git+https://github.com/Wandalen/wTraverser.git
   bugs : https://github.com/Wandalen/wTraverser/issues
-  entry.debug : '{path::out.debug}/dwtools/abase/____'
-  entry.release : '{path::out.release}/dwtools/abase/____'
 
 build :
 
-  .debug.raw.export :
-    default : 1
-    filesPath : path::out.debug
-    entryPath : path::entry.debug
-    setting :
+  debug.raw.export :
+    exportDirPath : path::out.debug
+    criterion :
+      default : 1
       debug : 1
       raw : 1
       export : 1
+      tar : 0
     steps :
-      - build::.debug
+      # - build::.debug.raw
       - step::export
 
-  .release.compiled.export :
-    filesPath : path::out.release
-    entryPath : path::entry.release
-    setting :
+  release.compiled.export :
+    exportDirPath : path::out.release
+    criterion :
       debug : 0
       raw : 0
       export : 1
+      tar : 0
     steps :
-      - build::.release.compiled
+      - build::release.compiled
       - step::export
+
+  export.all :
+    steps :
+      - build::debug.raw.export
+      - build::release.compiled.export
 
