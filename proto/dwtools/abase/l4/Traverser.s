@@ -377,6 +377,9 @@ function _traverseMap( it )
     if( c === false || c === _.dont )
     continue;
 
+    // if( _.strEnds( newIteration.path, 'srcFilter' ) && it.compact )
+    // debugger;
+
     _traverseAct( newIteration );
 
     // if( _.strEnds( newIteration.path, 'srcFilter' ) && it.compact )
