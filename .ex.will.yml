@@ -2,8 +2,8 @@
 about :
 
   name : wTraverser
-  description : Collection of routines to traverse data structures, no matter how compex and cycled them are. Traverser may be used to inspect data, make some transformation or duplication. Traverser relies on class relations definition for traversing. Use the module to traverse your data.
-  version : 0.3.52
+  description : 'Collection of routines to traverse data structures, no matter how compex and cycled them are. Traverser may be used to inspect data, make some transformation or duplication. Traverser relies on class relations definition for traversing. Use the module to traverse your data.'
+  version : 0.3.53
   enabled : 1
   interpreters :
   - nodejs >= 6.0.0
