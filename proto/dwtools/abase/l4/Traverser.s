@@ -514,7 +514,7 @@ function _traverseAct( it )
   if( !( it.level <= it.iterator.levels ) )
   throw _.err
   (
-    'failed to traverse structure',_.strTypeOf( it.iterator.rootSrc ) +
+    'failed to traverse structure',_.strType( it.iterator.rootSrc ) +
     '\nat ' + it.path +
     '\ntoo deep structure' +
     '\nrootSrc : ' + _.toStr( it.iterator.rootSrc ) +
@@ -631,7 +631,7 @@ function _traverseAct( it )
   if( !handled && it.copyingDegree > 1 )
   {
     debugger;
-    _.assert( 0,'unknown type of src : ' + _.strTypeOf( it.src ) );
+    _.assert( 0,'unknown type of src : ' + _.strType( it.src ) );
   }
 
   /* */
