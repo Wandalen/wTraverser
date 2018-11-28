@@ -164,8 +164,8 @@ reflector:
       ./dwtools/abase/l4/Traverser.s: true
       ./dwtools/abase/l4.test/Traverser.test.s: true
     srcFilter:
-      basePath: ./proto
-      prefixPath: .
+      basePath: .
+      prefixPath: proto
     dstFilter:
       basePath: .
       prefixPath: .
