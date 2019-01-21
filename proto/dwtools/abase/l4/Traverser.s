@@ -3,7 +3,8 @@
 'use strict';
 
 /**
-  @module Tools/base/Traverser - Collection of routines to traverse data structures, no matter how compex and cycled them are.  Traverser may be used to inspect data, make some transformation or duplication. Traverser relies on class relations definition for traversing. Use the module to traverse your data.
+ * Collection of routines to traverse data structures, no matter how compex and cycled them are.  Traverser may be used to inspect data, make some transformation or duplication. Traverser relies on class relations definition for traversing. Use the module to traverse your data.
+  @module Tools/base/Traverser
 */
 
 /**
