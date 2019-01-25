@@ -59,6 +59,8 @@ path:
       - ./dwtools/abase/l4/Traverser.s
       - ./dwtools/abase/l4.test
       - ./dwtools/abase/l4.test/Traverser.test.s
+      - ./dwtools/amid
+      - ./dwtools/atop
     criterion:
       default: 1
       debug: 1
