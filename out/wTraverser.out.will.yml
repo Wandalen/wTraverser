@@ -6,7 +6,7 @@ about:
     cycled them are. Traverser may be used to inspect data, make some
     transformation or duplication. Traverser relies on class relations
     definition for traversing. Use the module to traverse your data.
-  version: 0.3.58
+  version: 0.3.64
   enabled: 1
   interpreters:
     - nodejs >= 6.0.0
@@ -234,7 +234,7 @@ step:
       export: 'path::proto'
       tar: 0
     inherit:
-      - export
+      - predefined.export
 build:
   debug.raw:
     criterion:
@@ -283,7 +283,7 @@ build:
       - 'step::export.proto'
 exported:
   proto.export:
-    version: 0.3.58
+    version: 0.3.64
     criterion:
       default: 1
       debug: 1
