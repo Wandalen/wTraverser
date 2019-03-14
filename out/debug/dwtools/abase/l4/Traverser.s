@@ -133,6 +133,7 @@ function _traverseIterator( o )
     }
     else
     {
+      if( _.instanceIs( eit.down.src ) )
       if( eit.dst === null || eit.dst === undefined )
       return;
     }
@@ -319,9 +320,8 @@ function _traverseMap( it )
   // debugger;
   // if( it.screenFields && it.screenFields.importanceOfDetails !== undefined )
   // debugger;
-
-  if( _.strHas( it.path, 'excludeAny' ) )
-  debugger;
+  // if( _.strHas( it.path, '/src/filePath' ) )
+  // debugger;
 
   var c = it.onMapUp( it );
   _.assert( c === false || _.arrayIs( c ) || c === _.dont );
@@ -356,6 +356,8 @@ function _traverseMap( it )
 
     var newIteration = it.iterationNew( key );
 
+    // if( newIteration.path === '/src/filePath' )
+    // debugger;
     // if( _.strEnds( newIteration.path, 'srcFilter' ) && it.compact )
     // debugger;
 
