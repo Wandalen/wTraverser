@@ -6,14 +6,17 @@ about:
     cycled them are. Traverser may be used to inspect data, make some
     transformation or duplication. Traverser relies on class relations
     definition for traversing. Use the module to traverse your data.
-  version: 0.3.70
   enabled: 1
-  interpreters:
-    - nodejs >= 6.0.0
-    - chrome >= 60.0.0
-    - firefox >= 60.0.0
-  keywords:
-    - wTools
+  version: 0.3.70
+  values:
+    enabled: 1
+    name: wTraverser
+    interpreters:
+      - nodejs >= 6.0.0
+      - chrome >= 60.0.0
+      - firefox >= 60.0.0
+    keywords:
+      - wTools
 execution:
   scripts:
     test: wtest proto
@@ -69,66 +72,37 @@ path:
       export: 1
       tar: 1
       public: 1
+  original.will.files:
+    path:
+      - .im.will.yml
+      - .ex.will.yml
 submodule: {}
 reflector:
   reflect.proto.:
     src:
       filePath:
-        .: .
-      prefixPath: proto
-      maskAll:
-        excludeAny:
-          - !<tag:yaml.org,2002:js/regexp> /(\W|^)node_modules(\W|$)/
-          - !<tag:yaml.org,2002:js/regexp> /\.unique$/
-          - !<tag:yaml.org,2002:js/regexp> /\.git$/
-          - !<tag:yaml.org,2002:js/regexp> /\.svn$/
-          - !<tag:yaml.org,2002:js/regexp> /\.hg$/
-          - !<tag:yaml.org,2002:js/regexp> /\.DS_Store$/
-          - !<tag:yaml.org,2002:js/regexp> /(^|\/)-/
-          - !<tag:yaml.org,2002:js/regexp> /\.debug($|\.|\/)/i
-          - !<tag:yaml.org,2002:js/regexp> /\.test($|\.|\/)/i
-          - !<tag:yaml.org,2002:js/regexp> /\.experiment($|\.|\/)/i
-    dst:
-      prefixPath: out/release
+        'path::proto': 'path::out.*=1'
     criterion:
       debug: 0
+    mandatory: 1
     inherit:
       - predefined.*
   reflect.proto.debug:
     src:
       filePath:
-        .: .
-      prefixPath: proto
-      maskAll:
-        excludeAny:
-          - !<tag:yaml.org,2002:js/regexp> /(\W|^)node_modules(\W|$)/
-          - !<tag:yaml.org,2002:js/regexp> /\.unique$/
-          - !<tag:yaml.org,2002:js/regexp> /\.git$/
-          - !<tag:yaml.org,2002:js/regexp> /\.svn$/
-          - !<tag:yaml.org,2002:js/regexp> /\.hg$/
-          - !<tag:yaml.org,2002:js/regexp> /\.DS_Store$/
-          - !<tag:yaml.org,2002:js/regexp> /(^|\/)-/
-          - !<tag:yaml.org,2002:js/regexp> /\.release($|\.|\/)/i
-    dst:
-      prefixPath: out/debug
+        'path::proto': 'path::out.*=1'
     criterion:
       debug: 1
+    mandatory: 1
     inherit:
       - predefined.*
   reflect.submodules:
     src:
-      maskAll:
-        excludeAny:
-          - !<tag:yaml.org,2002:js/regexp> /(\W|^)node_modules(\W|$)/
-          - !<tag:yaml.org,2002:js/regexp> /\.unique$/
-          - !<tag:yaml.org,2002:js/regexp> /\.git$/
-          - !<tag:yaml.org,2002:js/regexp> /\.svn$/
-          - !<tag:yaml.org,2002:js/regexp> /\.hg$/
-          - !<tag:yaml.org,2002:js/regexp> /\.DS_Store$/
-          - !<tag:yaml.org,2002:js/regexp> /(^|\/)-/
-          - !<tag:yaml.org,2002:js/regexp> /\.release($|\.|\/)/i
+      filePath:
+        'submodule::*/exported::*=1/path::exportedDir*=1': 'path::out.*=1'
     criterion:
       debug: 1
+    mandatory: 1
     inherit:
       - predefined.*
   exported.proto.export:
@@ -144,22 +118,12 @@ reflector:
       export: 1
       tar: 1
       public: 1
+    mandatory: 1
   exportedFiles.proto.export:
-    recursive: 0
     src:
-      filePath:
-        .: null
-        dwtools: null
-        dwtools/Tools.s: null
-        dwtools/abase: null
-        dwtools/abase/l4: null
-        dwtools/abase/l4/Traverser.s: null
-        dwtools/abase/l4.test: null
-        dwtools/abase/l4.test/Traverser.test.s: null
-        dwtools/amid: null
-        dwtools/atop: null
+      filePath: 'path::exportedFiles.proto.export'
       basePath: .
-      prefixPath: proto
+      prefixPath: 'path::exportedDir.proto.export'
     criterion:
       default: 1
       debug: 1
@@ -168,6 +132,8 @@ reflector:
       export: 1
       tar: 1
       public: 1
+    recursive: 0
+    mandatory: 1
 step:
   clean.out.:
     criterion:
@@ -229,6 +195,13 @@ step:
       raw: 1
     opts:
       reflector: 'reflector::reflect.submodules*=1'
+    inherit:
+      - predefined.reflect
+  reflect.submodules:
+    criterion:
+      debug: 1
+    opts:
+      reflector: 'reflector::reflect.submodules*'
     inherit:
       - predefined.reflect
   export.proto:
@@ -301,3 +274,4 @@ exported:
     exportedFilesReflector: 'reflector::exportedFiles.proto.export'
     exportedDirPath: 'path::exportedDir.proto.export'
     exportedFilesPath: 'path::exportedFiles.proto.export'
+    originalWillFilesPath: 'path::original.will.files'
