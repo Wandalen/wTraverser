@@ -11,6 +11,13 @@
  * @file Traverser.s.
  */
 
+/**
+ * Collection of routines to traverse data structures, no matter how compex and cycled them are.
+ * @namespace Traverser
+ * @augments wTools
+ * @memberof module:Tools/base/Traverser
+*/
+
 if( typeof module !== 'undefined' )
 {
 
@@ -633,6 +640,88 @@ function _traverseAct( it )
 // --
 //
 // --
+
+/**
+ * @typedef {Object} iterationDefaults
+ * @property {Object} src=null
+ * @property {Object} dst=null
+ * @property {String} key=null
+ * @property {Object} proto=null
+ * @property {Number} level=0
+ * @property {String} path=''
+ * @property {Object} customFields=null
+ * @property {Object} dropFields=null
+ * @property {Object} screenFields=null
+ * @property {Boolean} instanceAsMap=0
+ * @property {Boolean} usingInstanceCopy=1
+ * @property {Boolean} compact=0
+ * @property {Number} copyingDegree=3
+ * @memberof module:Tools/base/Traverser.Traverser~
+ */
+
+ /**
+ * @typedef {Object} traverseOptions
+ * @property {Number} copyingComposes=3
+ * @property {Number} copyingAggregates=1
+ * @property {Number} copyingAssociates=1
+ * @property {Number} copyingMedials=0
+ * @property {Number} copyingMedialRestricts=1
+ * @property {Number} copyingMedialRestricts=0
+ * @property {Number} copyingRestricts=0
+ * @property {Number} copyingBuffers=3
+ * @property {Number} copyingCustomFields=0
+
+ * @property {Object} rootSrc=null
+ * @property {Number} levels=999
+ * @property {String} technique=null
+ * @property {Boolean} deserializing=0
+
+ * @property {Function} onEntityUp=null
+ * @property {Function} onEntityDown=null
+ * @property {Function} onContainerUp=null
+ * @property {Function} onContainerDown=null
+
+ * @property {Function} onDate=null
+ * @property {Function} onRegExp=null
+ * @property {Function} onRoutine=null
+ * @property {Function} onBuffer=null
+ * @property {Function} onInstanceCopy=null
+ * @property {Function} onCompactField=null
+ *
+ * @property {Function} onMapUp=null
+ * @property {Function} onMapElementUp=null
+ * @property {Function} onMapElementDown=null
+ * @property {Function} onArrayUp=null
+ * @property {Function} onArrayElementUp=null
+ * @property {Function} onArrayElementDown=null
+ * @memberof module:Tools/base/Traverser.Traverser~
+ */
+
+/**
+ * @summary Traverses a complex data structure.
+ * @param {Object} o Options map, look {@link module:Tools/base/Traverser.Traverser~traverseOptions traverseOptions} for details.
+ *
+ * @example
+ * var src = { buffer : new Float32Array([ 1,2,3 ]) };
+ *
+ * var onBufferPaths = [];
+ * function onBuffer( src,it )
+ * {
+ *   onBufferPaths.push( it.path );
+ *   return it;
+ * }
+*
+ * var r = _.traverse
+ * ({
+ *   src : src,
+ *   onBuffer : onBuffer,
+ * })
+ * console.log( onBufferPaths ); //["/buffer"]
+ *
+ * @returns {Object} Returns modified `o.src` object.
+ * @function traverse
+ * @memberof module:Tools/base/Traverser.Traverser
+ */
 
 function traverse( o )
 {
