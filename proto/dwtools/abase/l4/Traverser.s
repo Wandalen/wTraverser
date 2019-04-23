@@ -13,7 +13,7 @@
 
 /**
  * Collection of routines to traverse data structures, no matter how compex and cycled them are.
- * @namespace wTools(module:Traverser)
+ * @namespace wTools( module::Traverser )
  * @memberof module:Tools/base/Traverser
 */
 
@@ -655,7 +655,7 @@ function _traverseAct( it )
  * @property {Boolean} usingInstanceCopy=1
  * @property {Boolean} compact=0
  * @property {Number} copyingDegree=3
- * @memberof module:Tools/base/Traverser.wTools(module:Traverser)~
+ * @memberof module:Tools/base/Traverser.wTools( module::Traverser )~
  */
 
  /**
@@ -693,12 +693,12 @@ function _traverseAct( it )
  * @property {Function} onArrayUp=null
  * @property {Function} onArrayElementUp=null
  * @property {Function} onArrayElementDown=null
- * @memberof module:Tools/base/Traverser.wTools(module:Traverser)~
+ * @memberof module:Tools/base/Traverser.wTools( module::Traverser )~
  */
 
 /**
  * @summary Traverses a complex data structure.
- * @param {Object} o Options map, look {@link module:Tools/base/Traverser.wTools(module:Traverser)~traverseOptions traverseOptions} for details.
+ * @param {Object} o Options map, look {@link module:Tools/base/Traverser.wTools( module::Traverser )~traverseOptions traverseOptions} for details.
  *
  * @example
  * var src = { buffer : new Float32Array([ 1,2,3 ]) };
@@ -719,7 +719,7 @@ function _traverseAct( it )
  *
  * @returns {Object} Returns modified `o.src` object.
  * @function traverse
- * @memberof module:Tools/base/Traverser.wTools(module:Traverser)
+ * @memberof module:Tools/base/Traverser.wTools( module::Traverser )
  */
 
 function traverse( o )
