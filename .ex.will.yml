@@ -21,8 +21,8 @@ execution :
 
 path :
 
-  repository : git+https://github.com/Wandalen/wTraverser.git
-  bugs : https://github.com/Wandalen/wTraverser/issues
+  repository : git+https:///github.com/Wandalen/wTraverser.git
+  bugs : https:///github.com/Wandalen/wTraverser/issues
 
 step :
 
