@@ -26,7 +26,7 @@ path:
     criterion:
       predefined: 1
   module.dir:
-    path: out
+    path: out/
     criterion:
       predefined: 1
   module.common:
