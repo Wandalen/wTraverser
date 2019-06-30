@@ -712,8 +712,8 @@ function _traverseAct( it )
 *
  * var r = _.traverse
  * ({
- *   src : src,
- *   onBuffer : onBuffer,
+ *   src,
+ *   onBuffer,
  * })
  * console.log( onBufferPaths ); //["/buffer"]
  *
@@ -738,19 +738,19 @@ traverse.defaults = Object.create( _traverser.defaults );
 var Proto =
 {
 
-  _traverseIterator : _traverseIterator,
-  _traverseIteration : _traverseIteration,
+  /*ttt*/_traverseIterator,
+  /*ttt*/_traverseIteration,
 
-  _traverser : _traverser,
-  _traverseEntityUp : _traverseEntityUp,
-  _traverseEntityDown : _traverseEntityDown,
+  /*ttt*/_traverser,
+  /*ttt*/_traverseEntityUp,
+  /*ttt*/_traverseEntityDown,
 
-  _traverseMap : _traverseMap,
-  _traverseArray : _traverseArray,
-  _traverseBuffer : _traverseBuffer,
-  _traverseAct : _traverseAct,
+  /*ttt*/_traverseMap,
+  /*ttt*/_traverseArray,
+  /*ttt*/_traverseBuffer,
+  /*ttt*/_traverseAct,
 
-  traverse : traverse,
+  /*ttt*/traverse,
 
 }
 
