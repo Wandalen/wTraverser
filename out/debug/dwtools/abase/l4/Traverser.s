@@ -323,12 +323,6 @@ function _traverseMap( it )
     return it.dst;
   }
 
-  // debugger;
-  // if( it.screenFields && it.screenFields.importanceOfDetails !== undefined )
-  // debugger;
-  // if( _.strHas( it.path, '/src/filePath' ) )
-  // debugger;
-
   var c = it.onMapUp( it );
   _.assert( c === false || _.arrayIs( c ) || c === _.dont );
   if( c === false || c === _.dont )
@@ -356,29 +350,17 @@ function _traverseMap( it )
     if( !mapLike && !it.screenFields )
     if( !Object.hasOwnProperty.call( it.src,key ) )
     {
-      // debugger;
       continue;
     }
 
     var newIteration = it.iterationNew( key );
-
-    // if( newIteration.path === '/src/filePath' )
-    // debugger;
-    // if( _.strEnds( newIteration.path, 'srcFilter' ) && it.compact )
-    // debugger;
 
     let c = it.onMapElementUp( it, newIteration ) ;
     _.assert( c === false || c === _.dont || _.arrayIs( c ) );
     if( c === false || c === _.dont )
     continue;
 
-    // if( _.strEnds( newIteration.path, 'srcFilter' ) && it.compact )
-    // debugger;
-
     _traverseAct( newIteration );
-
-    // if( _.strEnds( newIteration.path, 'srcFilter' ) && it.compact )
-    // debugger;
 
     it.onMapElementDown( it, newIteration );
 
@@ -738,19 +720,19 @@ traverse.defaults = Object.create( _traverser.defaults );
 var Proto =
 {
 
-  /*ttt*/_traverseIterator,
-  /*ttt*/_traverseIteration,
+  _traverseIterator,
+  _traverseIteration,
 
-  /*ttt*/_traverser,
-  /*ttt*/_traverseEntityUp,
-  /*ttt*/_traverseEntityDown,
+  _traverser,
+  _traverseEntityUp,
+  _traverseEntityDown,
 
-  /*ttt*/_traverseMap,
-  /*ttt*/_traverseArray,
-  /*ttt*/_traverseBuffer,
-  /*ttt*/_traverseAct,
+  _traverseMap,
+  _traverseArray,
+  _traverseBuffer,
+  _traverseAct,
 
-  /*ttt*/traverse,
+  traverse,
 
 }
 
