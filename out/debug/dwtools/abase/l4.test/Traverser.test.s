@@ -78,11 +78,11 @@ function trivial( test )
   var r = _.traverse
   ({
     src : a,
-    /*ttt*/onBuffer,
-    /*ttt*/onMapElementUp,
-    /*ttt*/onMapElementDown,
-    /*ttt*/onArrayUp,
-    /*ttt*/onMapUp,
+    onBuffer,
+    onMapElementUp,
+    onMapElementDown,
+    onArrayUp,
+    onMapUp,
   })
   console.log( r );
 
@@ -107,7 +107,7 @@ var Self =
   tests :
   {
 
-    /*ttt*/trivial,
+    trivial,
 
   },
 
