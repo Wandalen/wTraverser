@@ -230,7 +230,7 @@ _traverser.defaults =
   copyingAggregates : 1,
   copyingAssociates : 1,
   copyingMedials : 0,
-  copyingMedialRestricts : 1, // xxx
+  copyingMedialRestricts : 1,
   copyingMedialRestricts : 0,
   copyingRestricts : 0,
   copyingBuffers : 3,
