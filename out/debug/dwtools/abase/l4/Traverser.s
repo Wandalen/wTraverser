@@ -683,7 +683,7 @@ function _traverseAct( it )
  * @param {Object} o Options map, look {@link module:Tools/base/Traverser.wTools( module::Traverser )~traverseOptions traverseOptions} for details.
  *
  * @example
- * var src = { buffer : new Float32Array([ 1,2,3 ]) };
+ * var src = { buffer : new F32x([ 1,2,3 ]) };
  *
  * var onBufferPaths = [];
  * function onBuffer( src,it )

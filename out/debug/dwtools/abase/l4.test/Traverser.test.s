@@ -23,7 +23,7 @@ var _ = _global_.wTools;
 function trivial( test )
 {
 
-  var a = { x : 1, dir : { y : 2, z : 'x' }, buffer : new Float32Array([ 1,2,3 ]), array : [ 3,4,5 ] };
+  var a = { x : 1, dir : { y : 2, z : 'x' }, buffer : new F32x([ 1,2,3 ]), array : [ 3,4,5 ] };
 
   // onString : null,
   // onRoutine : null,
@@ -101,7 +101,7 @@ function trivial( test )
 var Self =
 {
 
-  name : 'Tools/base/l4/Traverser',
+  name : 'Tools.base.l4.Traverser',
   silencing : 1,
 
   tests :
