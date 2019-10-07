@@ -246,6 +246,8 @@ _traverser.defaults =
   onContainerUp : null,
   onContainerDown : null,
 
+  onHashMap : null,
+  onSet : null,
   onDate : null,
   onString : null,
   onRegExp : null,
@@ -591,6 +593,24 @@ function _traverseAct( it )
     handled = 1;
     if( it.onDate )
     it.onDate( it.src,it );
+  }
+
+  /* set */
+
+  if( _.setLike( it.src ) )
+  {
+    handled = 1;
+    if( it.onSet )
+    it.onSet( it.src,it );
+  }
+
+  /* set */
+
+  if( _.hashMapLike( it.src ) )
+  {
+    handled = 1;
+    if( it.onHashMap )
+    it.onHashMap( it.src,it );
   }
 
   /* atomic */
