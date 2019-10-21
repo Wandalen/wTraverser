@@ -23,7 +23,7 @@ about :
 path :
 
   repository : git+https:///github.com/Wandalen/wTraverser.git
-  remotes :
+  origins :
    - git+https:///github.com/Wandalen/wTraverser.git
    - npm:///wtraverser
   bugtracker : https:///github.com/Wandalen/wTraverser/issues
