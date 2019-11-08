@@ -6,12 +6,13 @@ consistency:
     hash: 4334de7ea233f0e5aa605da868f7abef
     size: 1931
   ../.im.will.yml: &ref_1
-    hash: c90a9e574ceb8f3a78d5545c173ed896
-    size: 4865
+    hash: a63fcf859f7b9bf0107f51ed3d5dde15
+    size: 4939
 module:
   wTraverser.out:
     about:
       name: wTraverser
+      org: noorg
       description: >-
         Collection of routines to traverse data structures, no matter how compex
         and cycled them are. Traverser may be used to inspect data, make some
@@ -61,9 +62,6 @@ module:
       download:
         criterion:
           predefined: 1
-      remote:
-        criterion:
-          predefined: 1
       repository:
         path: 'git+https:///github.com/Wandalen/wTraverser.git'
       origins:
@@ -73,15 +71,15 @@ module:
       bugtracker:
         path: 'https:///github.com/Wandalen/wTraverser/issues'
       in:
-        criterion:
-          predefined: 0
         path: .
       out:
-        criterion:
-          predefined: 0
         path: .
       temp:
-        path: 'path::out'
+        path:
+          - 'path::out'
+          - ../package-lock.json
+          - ../package.json
+          - ../node_modules
       proto:
         path: ../proto
       export:
@@ -146,11 +144,13 @@ module:
         path: '{path::out.*=}/source/Index.s'
       exported.dir.proto.export:
         criterion:
+          generated: 1
           content: proto
           export: 1
         path: ../proto
       exported.files.proto.export:
         criterion:
+          generated: 1
           content: proto
           export: 1
         path:
@@ -329,6 +329,7 @@ module:
           prefixPath: ../proto
         mandatory: 1
         criterion:
+          generated: 1
           content: proto
           export: 1
       exported.files.proto.export:
@@ -341,6 +342,7 @@ module:
         recursive: 0
         mandatory: 1
         criterion:
+          generated: 1
           content: proto
           export: 1
     step:
@@ -787,6 +789,7 @@ module:
   ../:
     about:
       name: wTraverser
+      org: noorg
       description: >-
         Collection of routines to traverse data structures, no matter how compex
         and cycled them are. Traverser may be used to inspect data, make some
@@ -829,9 +832,6 @@ module:
       download:
         criterion:
           predefined: 1
-      remote:
-        criterion:
-          predefined: 1
       repository:
         path: 'git+https:///github.com/Wandalen/wTraverser.git'
       origins:
@@ -841,21 +841,21 @@ module:
       bugtracker:
         path: 'https:///github.com/Wandalen/wTraverser/issues'
       in:
-        criterion:
-          predefined: 0
         path: .
       out:
-        criterion:
-          predefined: 0
         path: out
       temp:
-        path: 'path::out'
+        path:
+          - 'path::out'
+          - package-lock.json
+          - package.json
+          - node_modules
       proto:
-        path: ./proto
+        path: proto
       export:
         path: '{path::proto}/**'
       doc:
-        path: ./doc
+        path: doc
       out.raw.debug:
         criterion:
           debug: debug
@@ -1473,5 +1473,5 @@ module:
         hash: 4334de7ea233f0e5aa605da868f7abef
         size: 1931
       ../.im.will.yml:
-        hash: c90a9e574ceb8f3a78d5545c173ed896
-        size: 4865
+        hash: a63fcf859f7b9bf0107f51ed3d5dde15
+        size: 4939
