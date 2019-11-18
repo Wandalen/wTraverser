@@ -313,7 +313,7 @@ function _traverseMap( it )
 
   _.assert( it.copyingDegree >= 1 );
   _.assert( arguments.length === 1, 'Expects single argument' );
-  _.assert( _.objectLike( it.src ) );
+  _.assert( _.objectLike( it.src ) || _.instanceIsStandard( it.src ) );
 
   /* */
 
@@ -356,6 +356,10 @@ function _traverseMap( it )
     }
 
     var newIteration = it.iterationNew( key );
+
+    // if( _global_.debugger )
+    // if( it.path === '/' )
+    // debugger;
 
     let c = it.onMapElementUp( it, newIteration ) ;
     _.assert( c === false || c === _.dont || _.arrayIs( c ) );
@@ -506,6 +510,10 @@ function _traverseAct( it )
   // if( it.path === '/output' )
   // debugger;
 
+  // if( _global_.debugger )
+  // if( _.routineIs( it.src ) )
+  // debugger;
+
   if( !_._traverseEntityUp( it ) )
   return it.dst;
 
@@ -533,6 +541,19 @@ function _traverseAct( it )
   }
 
   /* !!! else if required here */
+
+  /* object like */
+
+  if( _.instanceIsStandard( it.src ) )
+  {
+    // _.assert( 0, 'not tested' );
+    // debugger;
+    handled = 1;
+    _._traverseMap( it );
+  }
+
+  // if( _.routineIs( it.src ) && _.strIs( it.src.name ) && _.strHas( it.src.name, 'sync' ) )
+  // debugger;
 
   /* object like */
 
@@ -577,7 +598,7 @@ function _traverseAct( it )
     it.onString( it.src,it );
   }
 
-  /* string */
+  /* regexp */
 
   if( _.regexpIs( it.src ) )
   {
@@ -604,7 +625,7 @@ function _traverseAct( it )
     it.onSet( it.src,it );
   }
 
-  /* set */
+  /* hash map */
 
   if( _.hashMapLike( it.src ) )
   {
