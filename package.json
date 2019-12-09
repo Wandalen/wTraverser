@@ -1,6 +1,6 @@
 {
   "name" : "wtraverser", 
-  "version" : "0.3.111", 
+  "version" : "0.3.112", 
   "description" : "Collection of routines to traverse data structures, no matter how compex and cycled them are. Traverser may be used to inspect data, make some transformation or duplication. Traverser relies on class relations definition for traversing. Use the module to traverse your data.", 
   "author" : "Kostiantyn Wandalen <wanalen@willbe.so>", 
   "license" : "MIT", 
