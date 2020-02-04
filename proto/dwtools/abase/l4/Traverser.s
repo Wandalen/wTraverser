@@ -38,7 +38,7 @@ var TraverseIterator = Object.create( null );
 
 TraverseIterator.iterationClone = function iterationClone()
 {
-  _.assert( arguments.length === 0 );
+  _.assert( arguments.length === 0, 'Expects no arguments' );
   var newIteration = Object.create( this );
   return newIteration;
 }
