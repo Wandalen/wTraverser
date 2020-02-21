@@ -4,7 +4,7 @@ submodule :
   wTools :
     path : npm:///wTools
     enabled : 0 # submodule
-  wTools :
+  wProto :
     path : npm:///wProto
     enabled : 0 # submodule
   wtraverser :
