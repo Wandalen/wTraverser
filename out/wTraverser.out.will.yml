@@ -6,8 +6,8 @@ consistency:
     hash: 4334de7ea233f0e5aa605da868f7abef
     size: 1931
   ../.im.will.yml: &ref_1
-    hash: a63fcf859f7b9bf0107f51ed3d5dde15
-    size: 4939
+    hash: d692f99c48d4d0606d57bb88b8155a20
+    size: 5003
 module:
   wTraverser.out:
     about:
@@ -167,6 +167,10 @@ module:
     submodule:
       wTools:
         path: 'npm:///wTools'
+        autoExporting: 0
+        enabled: 0
+      wProto:
+        path: 'npm:///wProto'
         autoExporting: 0
         enabled: 0
       wtraverser:
@@ -917,6 +921,10 @@ module:
         path: 'npm:///wTools'
         autoExporting: 0
         enabled: 0
+      wProto:
+        path: 'npm:///wProto'
+        autoExporting: 0
+        enabled: 0
       wtraverser:
         path: 'hd://.'
         autoExporting: 0
@@ -1473,5 +1481,5 @@ module:
         hash: 4334de7ea233f0e5aa605da868f7abef
         size: 1931
       ../.im.will.yml:
-        hash: a63fcf859f7b9bf0107f51ed3d5dde15
-        size: 4939
+        hash: d692f99c48d4d0606d57bb88b8155a20
+        size: 5003
