@@ -22,11 +22,15 @@ if( typeof module !== 'undefined' )
 
   let _ = require( '../../Tools.s' );
 
+  _.include( 'wProto' );
+
 }
 
 var Self = _global_.wTools;
 var _global = _global_;
 var _ = _global_.wTools;
+
+_.assert( _.routineIs( _.instanceIsStandard ) );
 
 // --
 // routines
@@ -544,6 +548,8 @@ function _traverseAct( it )
 
   /* object like */
 
+  // debugger;
+  // _.assert( _.routineIs( _.instanceIsStandard ) );
   if( _.instanceIsStandard( it.src ) )
   {
     // _.assert( 0, 'not tested' );
