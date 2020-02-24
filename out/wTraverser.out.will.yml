@@ -2,10 +2,13 @@ format: outwillfile-2.0
 root:
   - wTraverser.out
 consistency:
-  ../.ex.will.yml: &ref_0
+  wTraverser.out.will.yml: &ref_0
+    hash: 653227531951a292cc1f1aaf55f5fede
+    size: 38623
+  ../.ex.will.yml: &ref_1
     hash: 4334de7ea233f0e5aa605da868f7abef
     size: 1931
-  ../.im.will.yml: &ref_1
+  ../.im.will.yml: &ref_2
     hash: d692f99c48d4d0606d57bb88b8155a20
     size: 5003
 module:
@@ -20,18 +23,18 @@ module:
         definition for traversing. Use the module to traverse your data.
       enabled: 1
       version: 0.4.0
-      interpreters: &ref_2
+      interpreters:
         - njs >= 8.0.0
         - chrome >= 60.0.0
         - firefox >= 60.0.0
-      keywords: &ref_3
+      keywords:
         - wTools
       license: MIT
       author: Kostiantyn Wandalen <wanalen@willbe.so>
-      contributors: &ref_4
+      contributors:
         - Kostiantyn Wandalen <wanalen@willbe.so>
       npm.name: wtraverser
-      npm.scripts: &ref_5
+      npm.scripts:
         test: wtest .run proto/**
         docgen: wdocgen .build proto
     path:
@@ -700,6 +703,24 @@ module:
           content: prime
         inherit:
           - files.transpile
+      exported.proto.export:
+        opts:
+          reflector: 'reflector::exported.proto.export*'
+        criterion:
+          generated: 1
+          content: proto
+          export: 1
+        inherit:
+          - files.reflect
+      exported.files.proto.export:
+        opts:
+          reflector: 'reflector::exported.files.proto.export*'
+        criterion:
+          generated: 1
+          content: proto
+          export: 1
+        inherit:
+          - files.reflect
     build:
       proto.export:
         steps:
@@ -788,8 +809,9 @@ module:
           content: proto
           export: 1
     consistency:
-      ../.ex.will.yml: *ref_0
-      ../.im.will.yml: *ref_1
+      wTraverser.out.will.yml: *ref_0
+      ../.ex.will.yml: *ref_1
+      ../.im.will.yml: *ref_2
   ../:
     about:
       name: wTraverser
@@ -801,13 +823,20 @@ module:
         definition for traversing. Use the module to traverse your data.
       enabled: 1
       version: 0.4.0
-      interpreters: *ref_2
-      keywords: *ref_3
+      interpreters:
+        - njs >= 8.0.0
+        - chrome >= 60.0.0
+        - firefox >= 60.0.0
+      keywords:
+        - wTools
       license: MIT
       author: Kostiantyn Wandalen <wanalen@willbe.so>
-      contributors: *ref_4
+      contributors:
+        - Kostiantyn Wandalen <wanalen@willbe.so>
       npm.name: wtraverser
-      npm.scripts: *ref_5
+      npm.scripts:
+        test: wtest .run proto/**
+        docgen: wdocgen .build proto
     path:
       module.willfiles:
         criterion:
@@ -1483,3 +1512,6 @@ module:
       ../.im.will.yml:
         hash: d692f99c48d4d0606d57bb88b8155a20
         size: 5003
+      wTraverser.out.will.yml:
+        hash: 653227531951a292cc1f1aaf55f5fede
+        size: 38623
