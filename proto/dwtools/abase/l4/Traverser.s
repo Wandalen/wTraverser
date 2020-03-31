@@ -13,7 +13,7 @@
 
 /**
  * Collection of routines to traverse data structures, no matter how compex and cycled them are.
- * @namespace wTools( module::Traverser )
+ * @namespace Tools.Traverser 
  * @memberof module:Tools/base/Traverser
 */
 
