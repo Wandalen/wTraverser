@@ -5,6 +5,7 @@
 /**
  * Collection of routines to traverse data structures, no matter how compex and cycled them are.  Traverser may be used to inspect data, make some transformation or duplication. Traverser relies on class relations definition for traversing. Use the module to traverse your data.
   @module Tools/base/Traverser
+  @extends Tools
 */
 
 /**
@@ -13,8 +14,6 @@
 
 /**
  * Collection of routines to traverse data structures, no matter how compex and cycled them are.
- * @namespace Tools.Traverser 
- * @memberof module:Tools/base/Traverser
 */
 
 if( typeof module !== 'undefined' )
@@ -684,7 +683,7 @@ function _traverseAct( it )
  * @property {Boolean} usingInstanceCopy=1
  * @property {Boolean} compact=0
  * @property {Number} copyingDegree=3
- * @memberof module:Tools/base/Traverser.wTools( module::Traverser )~
+ * @memberofs "module:Tools/base/Traverser","module:Tools/base/Fundamental.wTools"
  */
 
  /**
@@ -722,12 +721,12 @@ function _traverseAct( it )
  * @property {Function} onArrayUp=null
  * @property {Function} onArrayElementUp=null
  * @property {Function} onArrayElementDown=null
- * @memberof module:Tools/base/Traverser.wTools( module::Traverser )~
+ * @memberofs "module:Tools/base/Traverser","module:Tools/base/Fundamental.wTools"
  */
 
 /**
  * @summary Traverses a complex data structure.
- * @param {Object} o Options map, look {@link module:Tools/base/Traverser.wTools( module::Traverser )~traverseOptions traverseOptions} for details.
+ * @param {Object} o Options map, look {@link module:Tools/base/Traverser.wTools.Traverser~traverseOptions traverseOptions} for details.
  *
  * @example
  * var src = { buffer : new F32x([ 1,2,3 ]) };
@@ -748,7 +747,7 @@ function _traverseAct( it )
  *
  * @returns {Object} Returns modified `o.src` object.
  * @function traverse
- * @memberof module:Tools/base/Traverser.wTools( module::Traverser )
+ * @memberof module:Tools/base/Traverser.wTools.Traverser
  */
 
 function traverse( o )
