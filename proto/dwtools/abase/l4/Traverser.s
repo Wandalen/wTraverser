@@ -683,7 +683,8 @@ function _traverseAct( it )
  * @property {Boolean} usingInstanceCopy=1
  * @property {Boolean} compact=0
  * @property {Number} copyingDegree=3
- * @memberofs "module:Tools/base/Traverser","namespace:wTools"
+ * @namespace Tools
+ * @module Tools/base/Traverser
  */
 
  /**
@@ -721,7 +722,8 @@ function _traverseAct( it )
  * @property {Function} onArrayUp=null
  * @property {Function} onArrayElementUp=null
  * @property {Function} onArrayElementDown=null
- * @memberofs "module:Tools/base/Traverser","namespace:wTools"
+ * @namespace Tools
+ * @module Tools/base/Traverser
  */
 
 /**
@@ -747,7 +749,8 @@ function _traverseAct( it )
  *
  * @returns {Object} Returns modified `o.src` object.
  * @function traverse
- * @memberofs "module:Tools/base/Traverser","namespace:Tools"
+ * @namespace Tools
+ * @module Tools/base/Traverser
  */
 
 function traverse( o )
