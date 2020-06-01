@@ -198,6 +198,7 @@ module:
           prefixPath: ''
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           tests: no.tests
           debug: debug
@@ -214,6 +215,7 @@ module:
           prefixPath: ''
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           tests: no.tests
           debug: release
@@ -230,6 +232,7 @@ module:
           prefixPath: ''
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           tests: no.tests
           debug: debug
@@ -246,6 +249,7 @@ module:
           prefixPath: ''
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           tests: no.tests
           debug: release
@@ -262,6 +266,7 @@ module:
           prefixPath: ''
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           raw: raw
           debug: release
@@ -279,6 +284,7 @@ module:
           prefixPath: ''
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           tests: no.tests
           raw: compiled
@@ -297,6 +303,7 @@ module:
           prefixPath: ''
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           tests: no.tests
           raw: compiled
@@ -314,6 +321,7 @@ module:
           prefixPath: ''
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           tests: only.tests
           raw: compiled
@@ -331,6 +339,7 @@ module:
           prefixPath: ''
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           tests: only.tests
           raw: compiled
@@ -345,6 +354,7 @@ module:
           prefixPath: ../proto
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           generated: 1
           content: proto
@@ -359,6 +369,7 @@ module:
         recursive: 0
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           generated: 1
           content: proto
@@ -984,6 +995,7 @@ module:
             'path::proto': '{path::out.*=1}/source'
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           tests: no.tests
           debug: debug
@@ -997,6 +1009,7 @@ module:
             'path::proto': '{path::out.*=1}/source'
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           tests: no.tests
           debug: release
@@ -1010,6 +1023,7 @@ module:
             'path::proto': '{path::out.*=1}/source'
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           tests: no.tests
           debug: debug
@@ -1023,6 +1037,7 @@ module:
             'path::proto': '{path::out.*=1}/source'
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           tests: no.tests
           debug: release
@@ -1036,6 +1051,7 @@ module:
             'path::proto': '{path::out.raw.release}'
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           raw: raw
           debug: release
@@ -1050,6 +1066,7 @@ module:
             'path::proto': '{path::out.*=1}/Main.s'
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           tests: no.tests
           raw: compiled
@@ -1065,6 +1082,7 @@ module:
             'path::proto': '{path::out.*=1}/Main.s'
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           tests: no.tests
           raw: compiled
@@ -1079,6 +1097,7 @@ module:
             'path::proto': '{path::out.*=1}/Tests.test.s'
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           tests: only.tests
           raw: compiled
@@ -1093,6 +1112,7 @@ module:
             'path::proto': '{path::out.*=1}/Tests.test.s'
         mandatory: 1
         dstRewritingOnlyPreserving: 1
+        linking: hardLinkMaybe
         criterion:
           tests: only.tests
           raw: compiled
@@ -1532,6 +1552,4 @@ module:
       ../.im.will.yml:
         hash: d692f99c48d4d0606d57bb88b8155a20
         size: 5003
-      wTraverser.out.will.yml:
-        hash: 317bbb5b6c4a47f98ed65b2d197e5ffd
-        size: 39383
+      wTraverser.out.will.yml: *ref_0
