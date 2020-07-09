@@ -116,7 +116,7 @@ module:
       entry.proto.no.tests:
         criterion:
           tests: no.tests
-        path: ../proto/dwtools/abase/l4/Traverser.s
+        path: ../proto/wtools/abase/l4/Traverser.s
       entry.proto.only.tests:
         criterion:
           tests: only.tests
@@ -126,13 +126,13 @@ module:
           debug: debug
           raw: raw
           content: prime
-        path: '{path::out.*=1}/source/dwtools/abase/l4/Traverser.s'
+        path: '{path::out.*=1}/source/wtools/abase/l4/Traverser.s'
       entry.out.raw.debug.release:
         criterion:
           debug: release
           raw: raw
           content: prime
-        path: '{path::out.*=1}/source/dwtools/abase/l4/Traverser.s'
+        path: '{path::out.*=1}/source/wtools/abase/l4/Traverser.s'
       entry.out.compiled.debug.debug:
         criterion:
           debug: debug
@@ -159,15 +159,15 @@ module:
         path:
           - ../proto
           - ../proto/Integration.test.s
-          - ../proto/dwtools
-          - ../proto/dwtools/Tools.s
-          - ../proto/dwtools/abase
-          - ../proto/dwtools/abase/l4
-          - ../proto/dwtools/abase/l4/Traverser.s
-          - ../proto/dwtools/abase/l4.test
-          - ../proto/dwtools/abase/l4.test/Traverser.test.s
-          - ../proto/dwtools/amid
-          - ../proto/dwtools/atop
+          - ../proto/wtools
+          - ../proto/wtools/Tools.s
+          - ../proto/wtools/abase
+          - ../proto/wtools/abase/l4
+          - ../proto/wtools/abase/l4/Traverser.s
+          - ../proto/wtools/abase/l4.test
+          - ../proto/wtools/abase/l4.test/Traverser.test.s
+          - ../proto/wtools/amid
+          - ../proto/wtools/atop
     submodule:
       wTools:
         path: 'npm:///wTools'
@@ -909,7 +909,7 @@ module:
       entry.proto.no.tests:
         criterion:
           tests: no.tests
-        path: proto/dwtools/abase/l4/Traverser.s
+        path: proto/wtools/abase/l4/Traverser.s
       entry.proto.only.tests:
         criterion:
           tests: only.tests
@@ -919,13 +919,13 @@ module:
           debug: debug
           raw: raw
           content: prime
-        path: '{path::out.*=1}/source/dwtools/abase/l4/Traverser.s'
+        path: '{path::out.*=1}/source/wtools/abase/l4/Traverser.s'
       entry.out.raw.debug.release:
         criterion:
           debug: release
           raw: raw
           content: prime
-        path: '{path::out.*=1}/source/dwtools/abase/l4/Traverser.s'
+        path: '{path::out.*=1}/source/wtools/abase/l4/Traverser.s'
       entry.out.compiled.debug.debug:
         criterion:
           debug: debug
