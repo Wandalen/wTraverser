@@ -6,7 +6,7 @@ Collection of routines to traverse data structures, no matter how compex and cyc
 ### Try out
 ```
 npm install
-node sample/Sample.js
+node sample/Sample.s
 ```
 
 
