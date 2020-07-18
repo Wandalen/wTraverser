@@ -101,7 +101,7 @@ function trivial( test )
 let Self =
 {
 
-  name : 'Tools.base.l4.Traverser',
+  name : 'Tools.l4.Traverser',
   silencing : 1,
 
   tests :
