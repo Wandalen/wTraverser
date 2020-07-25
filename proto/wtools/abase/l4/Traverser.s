@@ -9,8 +9,7 @@
 */
 
 /**
- * @file Traverser.s.
- */
+ *  */
 
 /**
  * Collection of routines to traverse data structures, no matter how compex and cycled them are.
