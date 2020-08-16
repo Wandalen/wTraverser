@@ -1,1 +1,22 @@
-{"name":"wtraverser","version":"0.3.175","description":"Collection of routines to traverse data structures, no matter how compex and cycled them are. Traverser may be used to inspect data, make some transformation or duplication. Traverser relies on class relations definition for traversing. Use the module to traverse your data.","author":"Kostiantyn Wandalen <wanalen@01.school>","license":"MIT","main":"proto/wtools/abase/l4/Traverser.s","files":["proto/wtools/abase/l4","proto/wtools/Tools.s","out"],"scripts":{"test":"wtest .run 'proto/**' rapidity:-3","docgen":"wdocgen proto"},"repository":{"type":"git","url":"https://github.com/Wandalen/wTraverser.git"},"bugs":{"url":"https://github.com/Wandalen/wTraverser/issues"},"dependencies":{"wTools":"alpha","wProto":"alpha"},"devDependencies":{"wTesting":"alpha"},"keywords":["wTools"]}
+{
+  "name" : "wtraverser",
+  "version" : "0.3.176",
+  "description" : "Collection of routines to traverse data structures, no matter how compex and cycled them are. Traverser may be used to inspect data, make some transformation or duplication. Traverser relies on class relations definition for traversing. Use the module to traverse your data.",
+  "author" : "Kostiantyn Wandalen <wanalen@01.school>",
+  "license" : "MIT",
+  "main" : "proto/wtools/abase/l4/Traverser.s",
+  "files" : [ "proto/wtools/abase/l4", "proto/wtools/Tools.s", "out" ],
+  "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen proto" },
+  "repository" :
+  {
+    "type" : "git",
+    "url" : "https://github.com/Wandalen/wTraverser.git"
+  },
+  "bugs" :
+  {
+    "url" : "https://github.com/Wandalen/wTraverser/issues"
+  },
+  "dependencies" : { "wTools" : "alpha", "wProto" : "alpha" },
+  "devDependencies" : { "wTesting" : "alpha" },
+  "keywords" : [ "wTools" ]
+}
