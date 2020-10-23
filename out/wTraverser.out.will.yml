@@ -1498,6 +1498,4 @@ module:
       ../.im.will.yml:
         hash: 61cca47b2700bcdfdf9664c5f9185dda
         size: 5000
-      wTraverser.out.will.yml:
-        hash: d10610c69349e94ddb7a061546ae8f9c
-        size: 38494
+      wTraverser.out.will.yml: *ref_0
