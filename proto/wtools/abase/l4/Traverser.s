@@ -28,7 +28,7 @@ let Self = _global_.wTools;
 let _global = _global_;
 let _ = _global_.wTools;
 
-_.assert( _.routineIs( _.instanceIsStandard ) );
+_.assert( _.routineIs( _.workpiece.instanceIsStandard ) );
 
 // --
 // routines
@@ -315,7 +315,7 @@ function _traverseMap( it )
 
   _.assert( it.copyingDegree >= 1 );
   _.assert( arguments.length === 1, 'Expects single argument' );
-  _.assert( _.objectLike( it.src ) || _.instanceIsStandard( it.src ) );
+  _.assert( _.objectLike( it.src ) || _.workpiece.instanceIsStandard( it.src ) );
 
   /* */
 
@@ -547,8 +547,8 @@ function _traverseAct( it )
   /* object like */
 
   // debugger;
-  // _.assert( _.routineIs( _.instanceIsStandard ) );
-  if( _.instanceIsStandard( it.src ) )
+  // _.assert( _.routineIs( _.workpiece.instanceIsStandard ) );
+  if( _.workpiece.instanceIsStandard( it.src ) )
   {
     // _.assert( 0, 'not tested' );
     // debugger;
