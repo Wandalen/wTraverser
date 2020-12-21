@@ -1,4 +1,5 @@
-( function _Traverser_test_s_( ) {
+( function _Traverser_test_s_( )
+{
 
 'use strict';
 
@@ -23,7 +24,7 @@ let _ = _global_.wTools;
 function trivial( test )
 {
 
-  var a = { x : 1, dir : { y : 2, z : 'x' }, buffer : new F32x([ 1,2,3 ]), array : [ 3,4,5 ] };
+  var a = { x : 1, dir : { y : 2, z : 'x' }, buffer : new F32x([ 1, 2, 3 ]), array : [ 3, 4, 5 ] };
 
   // onString : null,
   // onRoutine : null,
@@ -33,7 +34,7 @@ function trivial( test )
   // onContainerDown : null,
   // onEntityUp : null,
   // onEntityDown : null,
-//
+  //
   // onMapUp : () => true,
   // onMapElementUp : () => true,
   // onMapElementDown : () => true,
@@ -69,7 +70,7 @@ function trivial( test )
   }
 
   var onBufferPaths = [];
-  function onBuffer( src,it )
+  function onBuffer( src, it )
   {
     onBufferPaths.push( it.path );
     return it;
@@ -86,11 +87,11 @@ function trivial( test )
   })
   console.log( r );
 
-  test.identical( onMapUpPaths,[ '/','/dir' ] );
-  test.identical( onMapElementUpPaths,[ '/x', '/dir', '/dir/y', '/dir/z', '/buffer', '/array' ] );
-  test.identical( onMapElementDownPaths,[ '/x', '/dir/y', '/dir/z', '/dir', '/buffer', '/array' ] );
-  test.identical( onArrayUpPaths,[ '/array' ] );
-  test.identical( onBufferPaths,[ '/buffer' ] );
+  test.identical( onMapUpPaths, [ '/', '/dir' ] );
+  test.identical( onMapElementUpPaths, [ '/x', '/dir', '/dir/y', '/dir/z', '/buffer', '/array' ] );
+  test.identical( onMapElementDownPaths, [ '/x', '/dir/y', '/dir/z', '/dir', '/buffer', '/array' ] );
+  test.identical( onArrayUpPaths, [ '/array' ] );
+  test.identical( onBufferPaths, [ '/buffer' ] );
 
 }
 

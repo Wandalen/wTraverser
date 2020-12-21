@@ -5,10 +5,10 @@ let _ = wTools;
 
 /**/
 
-function onMapEntryUp( map, entry )
+function onMapElementUp( map, entry )
 {
   console.log( entry.path );
 }
 
 var a = { x : 1, dir : { y : 2, z : 3 } };
-var r = _.traverse({ src : a, onMapEntryUp : onMapEntryUp })
+var r = _.traverse({ src : a, onMapElementUp })
