@@ -1,4 +1,5 @@
-( function _Taverser_s_() {
+( function _Taverser_s_()
+{
 
 'use strict';
 
@@ -128,7 +129,7 @@ function _traverseIterator( o )
 {
   var iterator = Object.create( TraverseIterator );
 
-  _.mapExtend( iterator,o );
+  _.mapExtend( iterator, o );
 
   iterator.rootSrc = o.rootSrc || o.src;
   iterator.iterator = iterator;
@@ -152,7 +153,7 @@ function _traverseIterator( o )
   _.assert( iterator.level === 0 );
   _.assert( iterator.copyingDegree >= 0 );
   _.assert( iterator.iterator === iterator );
-  _.assertRoutineOptions( _traverseIterator,o );
+  _.assertRoutineOptions( _traverseIterator, o );
 
   Object.preventExtensions( iterator );
 
@@ -174,7 +175,7 @@ function _traverseIteration( o )
 
 //
 
-function _traverser( routine,o )
+function _traverser( routine, o )
 {
   var routine = _traverser;
 
@@ -183,7 +184,7 @@ function _traverser( routine,o )
   _.assert( !routine.iteratorDefaults );
   _.assert( _.objectIs( routine.defaults ) );
   _.assert( arguments.length === 2, 'Expects exactly two arguments' );
-  _.routineOptions( routine,o );
+  _.routineOptions( routine, o );
   _.assertMapHasNoUndefine( o );
   _.assert( _.objectIs( o ) );
 
@@ -232,7 +233,7 @@ _traverser.defaults =
   copyingAggregates : 1,
   copyingAssociates : 1,
   copyingMedials : 0,
-  copyingMedialRestricts : 1,
+  // copyingMedialRestricts : 1,
   copyingMedialRestricts : 0,
   copyingRestricts : 0,
   copyingBuffers : 3,
@@ -321,15 +322,15 @@ function _traverseMap( it )
 
   if( it.onContainerUp )
   {
-    var c = it.onContainerUp( it );
-    _.assert( c === undefined || c === false );
-    if( c === false )
+    var c0 = it.onContainerUp( it );
+    _.assert( c0 === undefined || c0 === false );
+    if( c0 === false )
     return it.dst;
   }
 
-  var c = it.onMapUp( it );
-  _.assert( c === false || _.arrayIs( c ) || c === _.dont );
-  if( c === false || c === _.dont )
+  var c1 = it.onMapUp( it );
+  _.assert( c1 === false || _.arrayIs( c1 ) || c1 === _.dont );
+  if( c1 === false || c1 === _.dont )
   return it.dst;
 
   /* */
@@ -352,7 +353,7 @@ function _traverseMap( it )
 
     var mapLike = _.mapLike( it.src ) || it.instanceAsMap;
     if( !mapLike && !it.screenFields )
-    if( !Object.hasOwnProperty.call( it.src,key ) )
+    if( !Object.hasOwnProperty.call( it.src, key ) )
     {
       continue;
     }
@@ -401,15 +402,15 @@ function _traverseArray( it )
 
   if( it.onContainerUp )
   {
-    var c = it.onContainerUp( it );
-    _.assert( c === undefined || c === false );
-    if( c === false )
+    var c0 = it.onContainerUp( it );
+    _.assert( c0 === undefined || c0 === false );
+    if( c0 === false )
     return it.dst;
   }
 
-  var c = it.onArrayUp( it );
-  _.assert( c === false || _.arrayIs( c ) );
-  if( c === false )
+  var c1 = it.onArrayUp( it );
+  _.assert( c1 === false || _.arrayIs( c1 ) );
+  if( c1 === false )
   return it.dst;
 
   /* */
@@ -420,12 +421,12 @@ function _traverseArray( it )
     {
       var newIteration = it.iterationNew( key );
 
-      if( it.onArrayElementUp( it,newIteration ) === false )
+      if( it.onArrayElementUp( it, newIteration ) === false )
       continue;
 
       _traverseAct( newIteration );
 
-      it.onArrayElementDown( it,newIteration );
+      it.onArrayElementDown( it, newIteration );
     }
   }
   else
@@ -448,27 +449,27 @@ function _traverseArray( it )
 
 function _traverseBuffer( it )
 {
-  it.copyingDegree = Math.min( it.copyingBuffers,it.copyingDegree );
+  it.copyingDegree = Math.min( it.copyingBuffers, it.copyingDegree );
 
-  _.assert( it.copyingDegree >= 1,'not tested' );
-  _.assert( !_.bufferNodeIs( it.src ),'not tested' );
+  _.assert( it.copyingDegree >= 1, 'not tested' );
+  _.assert( !_.bufferNodeIs( it.src ), 'not tested' );
   _.assert( arguments.length === 1, 'Expects single argument' );
   _.assert( _.bufferAnyIs( it.src ) );
   _.assert( it.copyingDegree );
 
   if( it.onContainerUp )
   {
-    var c = it.onContainerUp( it );
-    _.assert( c === undefined || c === false );
-    if( c === false )
+    var c0 = it.onContainerUp( it );
+    _.assert( c0 === undefined || c0 === false );
+    if( c0 === false )
     return it.dst;
   }
 
   /* buffer */
 
-  var c = it.onBuffer( it.src, it );
-  _.assert( c === false || _.arrayIs( c ) );
-  if( c === false )
+  var c1 = it.onBuffer( it.src, it );
+  _.assert( c1 === false || _.arrayIs( c1 ) );
+  if( c1 === false )
   return it.dst;
 
   /* container down */
@@ -499,12 +500,12 @@ function _traverseAct( it )
   if( !( it.level <= it.iterator.levels ) )
   throw _.err
   (
-    'failed to traverse structure',_.strType( it.iterator.rootSrc ) +
-    '\nat ' + it.path +
-    '\ntoo deep structure' +
-    '\nrootSrc : ' + _.toStr( it.iterator.rootSrc ) +
-    '\niteration : ' + _.toStr( it ) +
-    '\niterator : ' + _.toStr( it.iterator )
+    'failed to traverse structure', _.strType( it.iterator.rootSrc )
+    + '\nat ' + it.path
+    + '\ntoo deep structure'
+    + '\nrootSrc : ' + _.toStr( it.iterator.rootSrc )
+    + '\niteration : ' + _.toStr( it )
+    + '\niterator : ' + _.toStr( it.iterator )
   );
 
   /* */
@@ -590,7 +591,7 @@ function _traverseAct( it )
   {
     handled = 1;
     if( it.onRoutine )
-    it.onRoutine( it.src,it );
+    it.onRoutine( it.src, it );
   }
 
   /* string */
@@ -599,7 +600,7 @@ function _traverseAct( it )
   {
     handled = 1;
     if( it.onString )
-    it.onString( it.src,it );
+    it.onString( it.src, it );
   }
 
   /* regexp */
@@ -608,7 +609,7 @@ function _traverseAct( it )
   {
     handled = 1;
     if( it.onRegExp )
-    it.onRegExp( it.src,it );
+    it.onRegExp( it.src, it );
   }
 
   /* date */
@@ -617,7 +618,7 @@ function _traverseAct( it )
   {
     handled = 1;
     if( it.onDate )
-    it.onDate( it.src,it );
+    it.onDate( it.src, it );
   }
 
   /* set */
@@ -626,7 +627,7 @@ function _traverseAct( it )
   {
     handled = 1;
     if( it.onSet )
-    it.onSet( it.src,it );
+    it.onSet( it.src, it );
   }
 
   /* hash map */
@@ -635,7 +636,7 @@ function _traverseAct( it )
   {
     handled = 1;
     if( it.onHashMap )
-    it.onHashMap( it.src,it );
+    it.onHashMap( it.src, it );
   }
 
   /* atomic */
@@ -653,7 +654,7 @@ function _traverseAct( it )
   if( !handled && it.copyingDegree > 1 )
   {
     debugger;
-    _.assert( 0,'unknown type of src : ' + _.strType( it.src ) );
+    _.assert( 0, 'unknown type of src : ' + _.strType( it.src ) );
   }
 
   /* */
@@ -686,7 +687,7 @@ function _traverseAct( it )
  * @module Tools/base/Traverser
  */
 
- /**
+/**
  * @typedef {Object} traverseOptions
  * @property {Number} copyingComposes=3
  * @property {Number} copyingAggregates=1
@@ -754,7 +755,7 @@ function _traverseAct( it )
 
 function traverse( o )
 {
-  var it = _._traverser( traverse,o );
+  var it = _._traverser( traverse, o );
   var result = _._traverseAct( it );
   return result;
 }
