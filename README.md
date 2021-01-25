@@ -8,7 +8,7 @@ Collection of cross-platform routines to traverse data structures, no matter how
 git clone https://github.com/Wandalen/wTraverser
 cd wTraverser
 npm install
-node sample/Sample.s
+node sample/trivial/Sample.s
 ```
 
 ## To add to your project
