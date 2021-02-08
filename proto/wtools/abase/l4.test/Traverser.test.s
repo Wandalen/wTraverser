@@ -8,6 +8,7 @@ if( typeof module !== 'undefined' )
 
   let _ = require( '../../../wtools/Tools.s' );
 
+  _.include( 'wCloner' );
   _.include( 'wTesting' );
 
   require( '../l4/Traverser.s' );
@@ -95,6 +96,29 @@ function trivial( test )
 
 }
 
+function traverseMapWithClonerRoutinesExperiment( test )
+{
+  var onMapElementUp = ( it, eit ) => eit;
+  var onMapUp = _._cloneMapUp;
+  var onMapElementDown = _._cloneMapElementDown;
+
+  /* */
+
+  test.case = 'before changes in private routine _cloneMapUp';
+  var src = { map : { y : 2, z : undefined }, primitive : 'abc' };
+  var got = _.traverse({ src, onMapUp, onMapElementUp, onMapElementDown });
+  test.identical( got, { map : { y : 2 }, primitive : 'abc' } );
+
+  /* */
+
+  test.case = 'after changes in private routine _cloneMapUp';
+  var src = { map : { y : 2, z : undefined }, primitive : 'abc' };
+  var got = _.traverse({ src, onMapUp, onMapElementUp, onMapElementDown });
+  test.identical( got, { map : { y : 2, z : undefined }, primitive : 'abc' } );
+}
+
+traverseMapWithClonerRoutinesExperiment.experimental = 1;
+
 // --
 // declare
 // --
@@ -109,6 +133,7 @@ let Self =
   {
 
     trivial,
+    traverseMapWithClonerRoutinesExperiment,
 
   },
 
