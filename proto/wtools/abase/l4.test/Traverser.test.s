@@ -96,7 +96,7 @@ function trivial( test )
 
 }
 
-function traverseMapWithClonerRoutinesExperiment( test )
+function traverseMapWithClonerRoutines( test )
 {
   var onMapElementUp = ( it, eit ) => eit;
   var onMapUp = _._cloneMapUp;
@@ -118,27 +118,7 @@ function traverseMapWithClonerRoutinesExperiment( test )
     primitive : 'abc'
   };
   test.identical( got, exp );
-
-  /* */
-
-  test.case = 'after changes in private routine _cloneMapUp';
-  var src =
-  {
-    map : { y : 2, z : undefined },
-    primitive : 'abc',
-    notDefined : undefined
-  };
-  var got = _.traverse({ src, onMapUp, onMapElementUp, onMapElementDown });
-  var exp =
-  {
-    map : { y : 2, z : undefined },
-    primitive : 'abc',
-    notDefined : undefined
-  };
-  test.identical( got, exp );
 }
-
-traverseMapWithClonerRoutinesExperiment.experimental = 1;
 
 // --
 // declare
@@ -154,7 +134,7 @@ let Self =
   {
 
     trivial,
-    traverseMapWithClonerRoutinesExperiment,
+    traverseMapWithClonerRoutines,
 
   },
 
