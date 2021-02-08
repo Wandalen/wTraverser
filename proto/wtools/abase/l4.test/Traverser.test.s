@@ -105,16 +105,37 @@ function traverseMapWithClonerRoutinesExperiment( test )
   /* */
 
   test.case = 'before changes in private routine _cloneMapUp';
-  var src = { map : { y : 2, z : undefined }, primitive : 'abc' };
+  var src =
+  {
+    map : { y : 2, z : undefined },
+    primitive : 'abc',
+    notDefined : undefined
+  };
   var got = _.traverse({ src, onMapUp, onMapElementUp, onMapElementDown });
-  test.identical( got, { map : { y : 2 }, primitive : 'abc' } );
+  var exp =
+  {
+    map : { y : 2 },
+    primitive : 'abc'
+  };
+  test.identical( got, exp );
 
   /* */
 
   test.case = 'after changes in private routine _cloneMapUp';
-  var src = { map : { y : 2, z : undefined }, primitive : 'abc' };
+  var src =
+  {
+    map : { y : 2, z : undefined },
+    primitive : 'abc',
+    notDefined : undefined
+  };
   var got = _.traverse({ src, onMapUp, onMapElementUp, onMapElementDown });
-  test.identical( got, { map : { y : 2, z : undefined }, primitive : 'abc' } );
+  var exp =
+  {
+    map : { y : 2, z : undefined },
+    primitive : 'abc',
+    notDefined : undefined
+  };
+  test.identical( got, exp );
 }
 
 traverseMapWithClonerRoutinesExperiment.experimental = 1;
