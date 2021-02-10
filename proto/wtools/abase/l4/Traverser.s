@@ -59,24 +59,42 @@ TraverseIterator.iterationNew = function iterationNew( key )
 
   result.iterationPrev = it;
 
-  if( it !== iterator )
-  {
-    result.down = it;
+  // if( it !== iterator )
+  // {
+  //   result.down = it;
+  //
+  //   result.path = null;
+  //   result.level = it.level;
+  //   result.copyingDegree = it.copyingDegree;
+  //
+  //   result.proto = null;
+  //   result.dst = null;
+  //   result.src = null;
+  //   result.key = null;
+  //
+  //   result.customFields = null;
+  //   result.dropFields = null;
+  //   result.screenFields = null;
+  // }
+  // else
+  // {
+  //   result.down = null;
+  //
+  //   result.level = iterator.level;
+  //   result.copyingDegree = iterator.copyingDegree;
+  //
+  //   result.proto = iterator.proto;
+  //   result.dst = iterator.dst;
+  //   result.src = iterator.src;
+  //   result.key = iterator.key;
+  //   result.path = iterator.path ? iterator.path : '/';
+  //
+  //   result.customFields = iterator.customFields;
+  //   result.dropFields = iterator.dropFields;
+  //   result.screenFields = iterator.screenFields;
+  // }
 
-    result.path = null;
-    result.level = it.level;
-    result.copyingDegree = it.copyingDegree;
-
-    result.proto = null;
-    result.dst = null;
-    result.src = null;
-    result.key = null;
-
-    result.customFields = null;
-    result.dropFields = null;
-    result.screenFields = null;
-  }
-  else
+  if( it === iterator )
   {
     result.down = null;
 
@@ -92,6 +110,23 @@ TraverseIterator.iterationNew = function iterationNew( key )
     result.customFields = iterator.customFields;
     result.dropFields = iterator.dropFields;
     result.screenFields = iterator.screenFields;
+  }
+  else
+  {
+    result.down = it;
+
+    result.path = null;
+    result.level = it.level;
+    result.copyingDegree = it.copyingDegree;
+
+    result.proto = null;
+    result.dst = null;
+    result.src = null;
+    result.key = null;
+
+    result.customFields = null;
+    result.dropFields = null;
+    result.screenFields = null;
   }
 
   /* */
