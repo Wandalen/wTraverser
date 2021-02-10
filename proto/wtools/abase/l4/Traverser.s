@@ -386,8 +386,8 @@ function _traverseMap( it )
     if( it.dropFields[ key ] !== undefined )
     continue;
 
-    var mapLike = _.mapLike( it.src ) || it.instanceAsMap;
-    if( !mapLike && !it.screenFields )
+    var mapLike_ = _.mapLike_( it.src ) || it.instanceAsMap;
+    if( !mapLike_ && !it.screenFields )
     if( !Object.hasOwnProperty.call( it.src, key ) )
     {
       continue;
@@ -545,13 +545,6 @@ function _traverseAct( it )
 
   /* */
 
-  // if( it.path === '/output' )
-  // debugger;
-
-  // if( _global_.debugger )
-  // if( _.routineIs( it.src ) )
-  // debugger;
-
   if( !_._traverseEntityUp( it ) )
   return it.dst;
 
@@ -565,12 +558,12 @@ function _traverseAct( it )
       it.onInstanceCopy( it.src, it );
     }
 
-    if( _.instanceLike( it.dst ) && _.routineIs( it.dst._traverseAct ) )
+    if( _.workpiece.instanceLikeStandard( it.dst ) && _.routineIs( it.dst._traverseAct ) )
     {
       it.dst._traverseAct( it );
       return it.dst;
     }
-    else if( _.instanceLike( it.src ) && _.routineIs( it.src._traverseAct ) )
+    else if( _.workpiece.instanceLikeStandard( it.src ) && _.routineIs( it.src._traverseAct ) )
     {
       it.src._traverseAct( it );
       return it.dst;
@@ -582,18 +575,11 @@ function _traverseAct( it )
 
   /* object like */
 
-  // debugger;
-  // _.assert( _.routineIs( _.workpiece.instanceIsStandard ) );
   if( _.workpiece.instanceIsStandard( it.src ) )
   {
-    // _.assert( 0, 'not tested' );
-    // debugger;
     handled = 1;
     _._traverseMap( it );
   }
-
-  // if( _.routineIs( it.src ) && _.strIs( it.src.name ) && _.strHas( it.src.name, 'sync' ) )
-  // debugger;
 
   /* object like */
 
