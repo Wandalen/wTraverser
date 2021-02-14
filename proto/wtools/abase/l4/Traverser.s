@@ -386,8 +386,8 @@ function _traverseMap( it )
     if( it.dropFields[ key ] !== undefined )
     continue;
 
-    var mapLike_ = _.mapLike_( it.src ) || it.instanceAsMap;
-    if( !mapLike_ && !it.screenFields )
+    var mapLike = _.mapLike( it.src ) || it.instanceAsMap;
+    if( !mapLike && !it.screenFields )
     if( !Object.hasOwnProperty.call( it.src, key ) )
     {
       continue;
@@ -581,14 +581,6 @@ function _traverseAct( it )
     _._traverseMap( it );
   }
 
-  /* object like */
-
-  if( _.objectLike( it.src ) )
-  {
-    handled = 1;
-    _._traverseMap( it );
-  }
-
   /* array like */
 
   var bufferAnyIs = _.bufferAnyIs( it.src );
@@ -658,6 +650,17 @@ function _traverseAct( it )
     handled = 1;
     if( it.onHashMap )
     it.onHashMap( it.src, it );
+  }
+
+  /* object like */
+
+  if( _.objectLike( it.src ) )
+  // if( _.objectLike( it.src ) && !_.regexpIs( it.src ) && !_.dateIs( it.src ) )
+  {
+    if( _.regexpIs( it.src ) )
+    debugger;
+    handled = 1;
+    _._traverseMap( it );
   }
 
   /* atomic */
