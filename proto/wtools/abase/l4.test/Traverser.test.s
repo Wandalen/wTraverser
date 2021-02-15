@@ -114,19 +114,19 @@ function traverseMapWithClonerRoutines( test )
     notDefined : undefined
   };
   var got = _.traverse({ src, onMapUp, onMapElementUp, onMapElementDown });
-  // var exp =
-  // {
-  //   map : { y : 2 },
-  //   primitive : 'abc'
-  // };
-  // test.identical( got, exp );
   var exp =
   {
-    'map' : { 'y' : 2, 'z' : undefined }, 
-    'primitive' : 'abc',
-    'notDefined' : undefined
+    map : { y : 2 },
+    primitive : 'abc'
   };
   test.identical( got, exp );
+  // var exp =
+  // {
+  //   'map' : { 'y' : 2, 'z' : undefined },
+  //   'primitive' : 'abc',
+  //   'notDefined' : undefined
+  // };
+  // test.identical( got, exp );
 
   /* */
 
