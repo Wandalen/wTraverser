@@ -47,6 +47,11 @@ function production( test )
 {
   let context = this;
   let a = test.assetFor( 'production' );
+  a.fileProvider.dirMake( a.abs( '.' ) );
+
+  let tester = _.module.resolve( 'wTesting' );
+  a.shell( `node ${ tester } .version` );
+
   let runList = [];
   let trigger = _.test.workflowTriggerGet();
 
