@@ -386,7 +386,7 @@ function _traverseMap( it )
     if( it.dropFields[ key ] !== undefined )
     continue;
 
-    var mapLike = _.mapLike( it.src ) || it.instanceAsMap;
+    var mapLike = _.auxiliary.is( it.src ) || it.instanceAsMap;
     if( !mapLike && !it.screenFields )
     if( !Object.hasOwnProperty.call( it.src, key ) )
     {
