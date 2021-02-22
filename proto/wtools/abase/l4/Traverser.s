@@ -535,12 +535,12 @@ function _traverseAct( it )
   if( !( it.level <= it.iterator.levels ) )
   throw _.err
   (
-    'failed to traverse structure', _.strType( it.iterator.rootSrc )
+    'failed to traverse structure', _.entity.strType( it.iterator.rootSrc )
     + '\nat ' + it.path
     + '\ntoo deep structure'
-    + '\nrootSrc : ' + _.toStr( it.iterator.rootSrc )
-    + '\niteration : ' + _.toStr( it )
-    + '\niterator : ' + _.toStr( it.iterator )
+    + '\nrootSrc : ' + _.entity.exportString( it.iterator.rootSrc )
+    + '\niteration : ' + _.entity.exportString( it )
+    + '\niterator : ' + _.entity.exportString( it.iterator )
   );
 
   /* */
@@ -679,7 +679,7 @@ function _traverseAct( it )
   if( !handled && it.copyingDegree > 1 )
   {
     debugger;
-    _.assert( 0, 'unknown type of src : ' + _.strType( it.src ) );
+    _.assert( 0, 'unknown type of src : ' + _.entity.strType( it.src ) );
   }
 
   /* */
