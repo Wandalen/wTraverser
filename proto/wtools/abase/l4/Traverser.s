@@ -652,7 +652,8 @@ function _traverseAct( it )
   if( !_.objectLikeStandard( it.src ) )
   // if( _.objectLike( it.src ) && !_.regexpIs( it.src ) && !_.dateIs( it.src ) )
   {
-    if( _.regexpIs( it.src ) )
+    // if( _.regexpIs( it.src ) )
+    // debugger;
     handled = 1;
     _._traverseMap( it );
   }
