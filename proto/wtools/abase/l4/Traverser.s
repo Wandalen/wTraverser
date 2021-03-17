@@ -336,7 +336,6 @@ function _traverseEntityDown( it )
 
   if( it.onEntityDown )
   {
-    debugger;
     var c = it.onEntityDown( it );
     _.assert( c === undefined );
   }
@@ -464,10 +463,6 @@ function _traverseArray( it )
       it.onArrayElementDown( it, newIteration );
     }
   }
-  else
-  {
-    debugger;
-  }
 
   /* container down */
 
@@ -511,7 +506,6 @@ function _traverseBuffer( it )
 
   if( it.onContainerDown )
   {
-    debugger;
     var c = it.onContainerDown( it );
     _.assert( c === undefined );
   }
@@ -658,8 +652,8 @@ function _traverseAct( it )
   if( !_.objectLikeStandard( it.src ) )
   // if( _.objectLike( it.src ) && !_.regexpIs( it.src ) && !_.dateIs( it.src ) )
   {
-    if( _.regexpIs( it.src ) )
-    debugger;
+    // if( _.regexpIs( it.src ) )
+    // debugger;
     handled = 1;
     _._traverseMap( it );
   }
@@ -678,7 +672,6 @@ function _traverseAct( it )
 
   if( !handled && it.copyingDegree > 1 )
   {
-    debugger;
     _.assert( 0, 'unknown type of src : ' + _.entity.strType( it.src ) );
   }
 
