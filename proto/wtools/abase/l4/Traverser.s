@@ -25,9 +25,9 @@ if( typeof module !== 'undefined' )
 
 }
 
-let Self = _global_.wTools;
-let _global = _global_;
-let _ = _global_.wTools;
+const Self = _global_.wTools;
+const _global = _global_;
+const _ = _global_.wTools;
 
 _.assert( _.routineIs( _.workpiece.instanceIsStandard ) );
 
@@ -220,7 +220,7 @@ function _traverser( routine, o )
   _.assert( _.objectIs( routine.defaults ) );
   _.assert( arguments.length === 2, 'Expects exactly two arguments' );
   _.routineOptions( routine, o );
-  _.assertMapHasNoUndefine( o );
+  _.map.assertHasNoUndefine( o );
   _.assert( _.objectIs( o ) );
 
   /* */
@@ -784,7 +784,7 @@ traverse.defaults = Object.create( _traverser.defaults );
 // declare
 // --
 
-var Proto =
+const Proto =
 {
 
   _traverseIterator,
