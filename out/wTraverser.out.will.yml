@@ -2,15 +2,12 @@ format: outwillfile-2.0
 root:
   - wTraverser.out
 consistency:
-  wTraverser.out.will.yml: &ref_0
-    hash: a9e4c5d3ccf87f616f12f3e8f0d7c10d
-    size: 38770
-  ../.ex.will.yml: &ref_1
+  ../.ex.will.yml: &ref_0
     hash: ad30339ae736a48c1b23671992b1bfee
     size: 1947
-  ../.im.will.yml: &ref_2
-    hash: 99702e6d2a68e5adb01ff36a0ff712bc
-    size: 5108
+  ../.im.will.yml: &ref_1
+    hash: aae1788c3384517ae0651632bd9c4c65
+    size: 5072
 module:
   wTraverser.out:
     about:
@@ -24,18 +21,18 @@ module:
         data.
       enabled: 1
       version: 0.4.0
-      interpreters:
+      interpreters: &ref_2
         - njs >= 10.0.0
         - chrome >= 60.0.0
         - firefox >= 60.0.0
-      keywords:
+      keywords: &ref_3
         - wTools
       license: MIT
       author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors:
+      contributors: &ref_4
         - Kostiantyn Wandalen <wanalen@01.school>
       npm.name: wtraverser
-      npm.scripts:
+      npm.scripts: &ref_5
         test: wtest .run proto/**
         docgen: wdocgen .build proto
     path:
@@ -66,7 +63,7 @@ module:
       download:
         criterion:
           predefined: 1
-        path: ../
+        path: ..
       repository:
         path: 'git+https:///github.com/Wandalen/wTraverser.git'
       origins:
@@ -147,6 +144,10 @@ module:
           raw: compiled
           content: prime
         path: '{path::out.*=}/source/Index.s'
+      npm.proto.entry:
+        path:
+          - ../proto/wtools/abase/l4/Traverser.s
+          - ../proto/node_modules/wtraverser
       exported.dir.proto.export:
         criterion:
           generated: 1
@@ -706,24 +707,6 @@ module:
           content: prime
         inherit:
           - files.transpile
-      exported.proto.export:
-        opts:
-          filePath: 'reflector::exported.proto.export'
-        criterion:
-          generated: 1
-          content: proto
-          export: 1
-        inherit:
-          - files.reflect
-      exported.files.proto.export:
-        opts:
-          filePath: 'reflector::exported.files.proto.export'
-        criterion:
-          generated: 1
-          content: proto
-          export: 1
-        inherit:
-          - files.reflect
     build:
       proto.export:
         steps:
@@ -812,9 +795,8 @@ module:
           content: proto
           export: 1
     consistency:
-      wTraverser.out.will.yml: *ref_0
-      ../.ex.will.yml: *ref_1
-      ../.im.will.yml: *ref_2
+      ../.ex.will.yml: *ref_0
+      ../.im.will.yml: *ref_1
   ../:
     about:
       name: wTraverser
@@ -827,20 +809,13 @@ module:
         data.
       enabled: 1
       version: 0.4.0
-      interpreters:
-        - njs >= 10.0.0
-        - chrome >= 60.0.0
-        - firefox >= 60.0.0
-      keywords:
-        - wTools
+      interpreters: *ref_2
+      keywords: *ref_3
       license: MIT
       author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors:
-        - Kostiantyn Wandalen <wanalen@01.school>
+      contributors: *ref_4
       npm.name: wtraverser
-      npm.scripts:
-        test: wtest .run proto/**
-        docgen: wdocgen .build proto
+      npm.scripts: *ref_5
     path:
       module.willfiles:
         criterion:
@@ -869,7 +844,7 @@ module:
       download:
         criterion:
           predefined: 1
-        path: ./
+        path: .
       repository:
         path: 'git+https:///github.com/Wandalen/wTraverser.git'
       origins:
@@ -950,6 +925,10 @@ module:
           raw: compiled
           content: prime
         path: '{path::out.*=}/source/Index.s'
+      npm.proto.entry:
+        path:
+          - proto/wtools/abase/l4/Traverser.s
+          - proto/node_modules/wtraverser
     submodule:
       wTools:
         path: 'npm:///wTools'
@@ -1512,6 +1491,5 @@ module:
         hash: ad30339ae736a48c1b23671992b1bfee
         size: 1947
       ../.im.will.yml:
-        hash: 99702e6d2a68e5adb01ff36a0ff712bc
-        size: 5108
-      wTraverser.out.will.yml: *ref_0
+        hash: aae1788c3384517ae0651632bd9c4c65
+        size: 5072
