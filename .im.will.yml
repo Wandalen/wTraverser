@@ -80,8 +80,8 @@ path:
       raw: compiled
       content: prime
   npm.proto.entry:
-    - /pro/module/wTraverser/proto/wtools/abase/l4/Traverser.s
-    - /pro/module/wTraverser/proto/node_modules/wtraverser
+    - proto/wtools/abase/l4/Traverser.s
+    - proto/node_modules/wtraverser
 reflector:
   reflect.proto:
     inherit: predefined.*
