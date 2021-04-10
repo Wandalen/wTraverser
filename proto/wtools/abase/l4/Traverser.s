@@ -235,6 +235,7 @@ function _traverser( routine, o )
   o.onArrayElementUp = _.routinesComposeAll( o.onArrayElementUp );
   o.onArrayElementDown = _.routinesCompose( o.onArrayElementDown );
   o.onBuffer = _.routinesComposeAll( o.onBuffer );
+  o.onSet = _.routinesComposeAll( o.onSet );
 
   var it = _traverseIteration( o );
 
@@ -291,6 +292,7 @@ _traverser.defaults =
   onRegExp : null,
   onRoutine : null,
   onBuffer : null,
+  onSet : null,
   onInstanceCopy : null,
   onCompactField : null,
 
@@ -515,6 +517,42 @@ function _traverseBuffer( it )
 
 //
 
+function _traverseSet( it )
+{
+  it.copyingDegree = Math.min( it.copyingBuffers, it.copyingDegree );
+
+  _.assert( it.copyingDegree >= 1, 'not tested' );
+  _.assert( arguments.length === 1, 'Expects single argument' );
+  _.assert( _.setIs( it.src ) );
+  _.assert( it.copyingDegree );
+
+  if( it.onContainerUp )
+  {
+    var c0 = it.onContainerUp( it );
+    _.assert( c0 === undefined || c0 === false );
+    if( c0 === false )
+    return it.dst;
+  }
+
+  /* buffer */
+
+  var c1 = it.onSet( it.src, it );
+  if( c1 === false )
+  return it.dst;
+
+  /* container down */
+
+  if( it.onContainerDown )
+  {
+    var c = it.onContainerDown( it );
+    _.assert( c === undefined );
+  }
+
+  return it.dst;
+}
+
+//
+
 function _traverseAct( it )
 {
   var handled = 0;
@@ -582,6 +620,14 @@ function _traverseAct( it )
   {
     handled = 1;
     _._traverseArray( it );
+  }
+
+  /* set like */
+
+  if( _.setIs( it.src ) )
+  {
+    handled = 1;
+    _._traverseSet( it );
   }
 
   /* buffer like */
@@ -797,6 +843,7 @@ const Proto =
   _traverseMap,
   _traverseArray,
   _traverseBuffer,
+  _traverseSet,
   _traverseAct,
 
   traverse,
