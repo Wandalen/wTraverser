@@ -32,7 +32,7 @@ const _ = _global_.wTools;
 _.assert( _.routineIs( _.workpiece.instanceIsStandard ) );
 
 // --
-// routines
+// implementation
 // --
 
 var TraverseIterator = Object.create( null );
@@ -164,7 +164,7 @@ function _traverseIterator( o )
 {
   var iterator = Object.create( TraverseIterator );
 
-  _.mapExtend( iterator, o );
+  _.props.extend( iterator, o );
 
   iterator.rootSrc = o.rootSrc || o.src;
   iterator.iterator = iterator;
@@ -188,7 +188,7 @@ function _traverseIterator( o )
   _.assert( iterator.level === 0 );
   _.assert( iterator.copyingDegree >= 0 );
   _.assert( iterator.iterator === iterator );
-  _.assertRoutineOptions( _traverseIterator, o );
+  _.routine.assertOptions( _traverseIterator, o );
 
   Object.preventExtensions( iterator );
 
@@ -219,7 +219,7 @@ function _traverser( routine, o )
   _.assert( !routine.iteratorDefaults );
   _.assert( _.objectIs( routine.defaults ) );
   _.assert( arguments.length === 2, 'Expects exactly two arguments' );
-  _.routineOptions( routine, o );
+  _.routine.options_( routine, o );
   _.map.assertHasNoUndefine( o );
   _.assert( _.objectIs( o ) );
 
@@ -305,7 +305,7 @@ _traverser.defaults =
 
 }
 
-_.mapExtend( _traverser.defaults, _traverser.iterationDefaults );
+_.props.extend( _traverser.defaults, _traverser.iterationDefaults );
 
 _traverseIterator.defaults = Object.create( _traverser.defaults );
 _traverseIterator.defaults.defaults = null;
@@ -850,7 +850,7 @@ const Proto =
 
 }
 
-_.mapExtend( Self, Proto );
+_.props.extend( Self, Proto );
 
 // --
 // export
