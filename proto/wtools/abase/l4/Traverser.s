@@ -131,7 +131,7 @@ TraverseIterator.iterationNew = function iterationNew( key )
 
   /* */
 
-  _.assert( _.objectIs( result.iterator ) );
+  _.assert( _.object.isBasic( result.iterator ) );
 
   if( key !== undefined )
   result.select( key );
@@ -215,13 +215,13 @@ function _traverser( routine, o )
   var routine = _traverser;
 
   _.assert( _.routineIs( routine ) );
-  _.assert( _.objectIs( routine.iterationDefaults ) );
+  _.assert( _.object.isBasic( routine.iterationDefaults ) );
   _.assert( !routine.iteratorDefaults );
-  _.assert( _.objectIs( routine.defaults ) );
+  _.assert( _.object.isBasic( routine.defaults ) );
   _.assert( arguments.length === 2, 'Expects exactly two arguments' );
   _.routine.options_( routine, o );
   _.map.assertHasNoUndefine( o );
-  _.assert( _.objectIs( o ) );
+  _.assert( _.object.isBasic( o ) );
 
   /* */
 
@@ -396,8 +396,7 @@ function _traverseMap( it )
 
     var newIteration = it.iterationNew( key );
 
-    // if( _global_.debugger )
-    // if( it.path === '/' )
+    // if( it.path === '/output' )
     // debugger;
 
     let c = it.onMapElementUp( it, newIteration ) ;
@@ -560,7 +559,7 @@ function _traverseAct( it )
   _.assert( arguments.length === 1, 'Expects single argument' );
   _.assert( it.level >= 0 );
   _.assert( it.copyingDegree > 0 );
-  _.assert( _.objectIs( it.iterator ) );
+  _.assert( _.object.isBasic( it.iterator ) );
   _.assert( _.strIs( it.path ) );
   _.assert( !( _.objectLike( it.src ) && _.longIs( it.src ) ) );
 
