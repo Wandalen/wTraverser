@@ -2,13 +2,10 @@ format: outwillfile-2.0
 root:
   - wTraverser.out
 consistency:
-  wTraverser.out.will.yml: &ref_0
-    hash: af9d17c64f502ae6560d723072a2a62d
-    size: 39138
-  ../.ex.will.yml: &ref_1
+  ../.ex.will.yml: &ref_0
     hash: ad30339ae736a48c1b23671992b1bfee
     size: 1947
-  ../.im.will.yml: &ref_2
+  ../.im.will.yml: &ref_1
     hash: 872eb6d689676dd1d1b046f761024e70
     size: 5026
 module:
@@ -24,18 +21,18 @@ module:
         data.
       enabled: 1
       version: 0.4.0
-      interpreters:
+      interpreters: &ref_2
         - njs >= 10.0.0
         - chrome >= 60.0.0
         - firefox >= 60.0.0
-      keywords:
+      keywords: &ref_3
         - wTools
       license: MIT
       author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors:
+      contributors: &ref_4
         - Kostiantyn Wandalen <wanalen@01.school>
       npm.name: wtraverser
-      npm.scripts:
+      npm.scripts: &ref_5
         test: wtest .run proto/**
         docgen: wdocgen .build proto
     path:
@@ -710,24 +707,6 @@ module:
           content: prime
         inherit:
           - files.transpile
-      exported.proto.export:
-        opts:
-          filePath: 'reflector::exported.proto.export'
-        criterion:
-          generated: 1
-          content: proto
-          export: 1
-        inherit:
-          - files.reflect
-      exported.files.proto.export:
-        opts:
-          filePath: 'reflector::exported.files.proto.export'
-        criterion:
-          generated: 1
-          content: proto
-          export: 1
-        inherit:
-          - files.reflect
     build:
       proto.export:
         steps:
@@ -816,9 +795,8 @@ module:
           content: proto
           export: 1
     consistency:
-      wTraverser.out.will.yml: *ref_0
-      ../.ex.will.yml: *ref_1
-      ../.im.will.yml: *ref_2
+      ../.ex.will.yml: *ref_0
+      ../.im.will.yml: *ref_1
   ../:
     about:
       name: wTraverser
@@ -831,20 +809,13 @@ module:
         data.
       enabled: 1
       version: 0.4.0
-      interpreters:
-        - njs >= 10.0.0
-        - chrome >= 60.0.0
-        - firefox >= 60.0.0
-      keywords:
-        - wTools
+      interpreters: *ref_2
+      keywords: *ref_3
       license: MIT
       author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors:
-        - Kostiantyn Wandalen <wanalen@01.school>
+      contributors: *ref_4
       npm.name: wtraverser
-      npm.scripts:
-        test: wtest .run proto/**
-        docgen: wdocgen .build proto
+      npm.scripts: *ref_5
     path:
       module.willfiles:
         criterion:
@@ -1522,4 +1493,3 @@ module:
       ../.im.will.yml:
         hash: 872eb6d689676dd1d1b046f761024e70
         size: 5026
-      wTraverser.out.will.yml: *ref_0
