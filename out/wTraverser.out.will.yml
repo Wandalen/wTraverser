@@ -2,12 +2,9 @@ format: outwillfile-2.0
 root:
   - wTraverser.out
 consistency:
-  ../.ex.will.yml: &ref_0
-    hash: ad30339ae736a48c1b23671992b1bfee
-    size: 1947
-  ../.im.will.yml: &ref_1
-    hash: 872eb6d689676dd1d1b046f761024e70
-    size: 5026
+  ../will.yml: &ref_0
+    hash: 3e7b5e726d3d7653a6442d0b3618cae8
+    size: 6745
 module:
   wTraverser.out:
     about:
@@ -21,18 +18,18 @@ module:
         data.
       enabled: 1
       version: 0.4.0
-      interpreters: &ref_2
+      license: MIT
+      npm.name: wtraverser
+      author: Kostiantyn Wandalen <wanalen@01.school>
+      keywords: &ref_1
+        - wTools
+      contributors: &ref_2
+        - Kostiantyn Wandalen <wanalen@01.school>
+      interpreters: &ref_3
         - njs >= 10.0.0
         - chrome >= 60.0.0
         - firefox >= 60.0.0
-      keywords: &ref_3
-        - wTools
-      license: MIT
-      author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors: &ref_4
-        - Kostiantyn Wandalen <wanalen@01.school>
-      npm.name: wtraverser
-      npm.scripts: &ref_5
+      npm.scripts: &ref_4
         test: wtest .run proto/**
         docgen: wdocgen .build proto
     path:
@@ -47,15 +44,11 @@ module:
       module.original.willfiles:
         criterion:
           predefined: 1
-        path:
-          - ../.ex.will.yml
-          - ../.im.will.yml
+        path: ../will.yml
       module.peer.willfiles:
         criterion:
           predefined: 1
-        path:
-          - ../.ex.will.yml
-          - ../.im.will.yml
+        path: ../will.yml
       module.peer.in:
         criterion:
           predefined: 1
@@ -795,8 +788,7 @@ module:
           content: proto
           export: 1
     consistency:
-      ../.ex.will.yml: *ref_0
-      ../.im.will.yml: *ref_1
+      ../will.yml: *ref_0
   ../:
     about:
       name: wTraverser
@@ -809,26 +801,22 @@ module:
         data.
       enabled: 1
       version: 0.4.0
-      interpreters: *ref_2
-      keywords: *ref_3
       license: MIT
-      author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors: *ref_4
       npm.name: wtraverser
-      npm.scripts: *ref_5
+      author: Kostiantyn Wandalen <wanalen@01.school>
+      keywords: *ref_1
+      contributors: *ref_2
+      interpreters: *ref_3
+      npm.scripts: *ref_4
     path:
       module.willfiles:
         criterion:
           predefined: 1
-        path:
-          - .ex.will.yml
-          - .im.will.yml
+        path: will.yml
       module.original.willfiles:
         criterion:
           predefined: 1
-        path:
-          - .ex.will.yml
-          - .im.will.yml
+        path: will.yml
       module.peer.willfiles:
         criterion:
           predefined: 1
@@ -1487,9 +1475,6 @@ module:
           - 'build::release'
           - 'build::npm'
     consistency:
-      ../.ex.will.yml:
-        hash: ad30339ae736a48c1b23671992b1bfee
-        size: 1947
-      ../.im.will.yml:
-        hash: 872eb6d689676dd1d1b046f761024e70
-        size: 5026
+      ../will.yml:
+        hash: 3e7b5e726d3d7653a6442d0b3618cae8
+        size: 6745
