@@ -25,7 +25,6 @@ if( typeof module !== 'undefined' )
 
 }
 
-const Self = _global_.wTools;
 const _global = _global_;
 const _ = _global_.wTools;
 
@@ -486,7 +485,7 @@ function _traverseBuffer( it )
   _.assert( !_.bufferNodeIs( it.src ), 'not tested' );
   _.assert( arguments.length === 1, 'Expects single argument' );
   _.assert( _.bufferAnyIs( it.src ) );
-  _.assert( it.copyingDegree );
+  _.assert( it.copyingDegree > 0 );
 
   if( it.onContainerUp )
   {
@@ -523,7 +522,7 @@ function _traverseSet( it )
   _.assert( it.copyingDegree >= 1, 'not tested' );
   _.assert( arguments.length === 1, 'Expects single argument' );
   _.assert( _.setIs( it.src ) );
-  _.assert( it.copyingDegree );
+  _.assert( it.copyingDegree > 0 );
 
   if( it.onContainerUp )
   {
@@ -849,13 +848,13 @@ const Proto =
 
 }
 
-_.props.extend( Self, Proto );
+_.props.extend( _, Proto );
 
 // --
 // export
 // --
 
 if( typeof module !== 'undefined' )
-module[ 'exports' ] = Self;
+module[ 'exports' ] = _;
 
 })();
