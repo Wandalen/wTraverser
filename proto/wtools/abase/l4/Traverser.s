@@ -285,7 +285,6 @@ _traverser.defaults =
   onContainerDown : null,
 
   onHashMap : null,
-  onSet : null,
   onDate : null,
   onString : null,
   onRegExp : null,
