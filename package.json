@@ -1,22 +1,37 @@
 {
-  "name" : "wtraverser",
-  "version" : "0.3.253",
-  "description" : "Collection of cross-platform routines to traverse data structures, no matter how compex and cycled them are. Traverser may be used to inspect data, make some transformation or duplication. Traverser relies on class relations definition for traversing. Use the module to traverse your data.",
-  "author" : "Kostiantyn Wandalen <wanalen@01.school>",
-  "license" : "MIT",
-  "main" : "proto/node_modules/wtraverser",
-  "files" : [ "proto/wtools/abase/l4", "out", "proto/node_modules", "proto/node_modules/Tools", "proto/node_modules/wtraverser" ],
-  "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen proto" },
-  "repository" :
-  {
-    "type" : "git",
-    "url" : "https://github.com/Wandalen/wTraverser.git"
+  "name": "wtraverser",
+  "version": "0.3.254",
+  "description": "Collection of cross-platform routines to traverse data structures, no matter how compex and cycled them are. Traverser may be used to inspect data, make some transformation or duplication. Traverser relies on class relations definition for traversing. Use the module to traverse your data.",
+  "author": "Kostiantyn Wandalen <wanalen@01.school>",
+  "license": "MIT",
+  "main": "proto/node_modules/wtraverser",
+  "files": [
+    "proto/wtools/abase/l4",
+    "out",
+    "proto/node_modules",
+    "proto/node_modules/Tools",
+    "proto/node_modules/wtraverser"
+  ],
+  "scripts": {
+    "test": "wtest .run 'proto/**' rapidity:-3",
+    "docgen": "wdocgen proto"
   },
-  "bugs" :
-  {
-    "url" : "https://github.com/Wandalen/wTraverser/issues"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wandalen/wTraverser.git"
   },
-  "dependencies" : { "wTools" : "gamma", "wProto" : "gamma" },
-  "devDependencies" : { "eslint" : "7.1.0", "wTesting" : "gamma" },
-  "keywords" : [ "wTools" ]
+  "bugs": {
+    "url": "https://github.com/Wandalen/wTraverser/issues"
+  },
+  "dependencies": {
+    "wTools": "gamma",
+    "wProto": "gamma"
+  },
+  "devDependencies": {
+    "wTesting": "gamma",
+    "eslint": "7.1.0"
+  },
+  "keywords": [
+    "wTools"
+  ]
 }
