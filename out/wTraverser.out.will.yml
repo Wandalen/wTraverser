@@ -3,8 +3,8 @@ root:
   - wTraverser.out
 consistency:
   ../will.yml: &ref_0
-    hash: 3e7b5e726d3d7653a6442d0b3618cae8
-    size: 6745
+    hash: 3ea724ae4179b1e51295e2d3b70cecb0
+    size: 6604
 module:
   wTraverser.out:
     about:
@@ -374,9 +374,6 @@ module:
           content: npm
         inherit:
           - module.export
-      npm.publish:
-        opts:
-          shell: npm publish
       npm.generate.debug.raw:
         opts:
           entryPath: 'path::entry.out.*=1'
@@ -712,12 +709,6 @@ module:
           - 'step::doc.export'
         criterion:
           content: doc
-          export: 1
-      npm.export:
-        steps:
-          - 'step::npm.publish'
-        criterion:
-          content: npm
           export: 1
       export:
         steps:
@@ -1074,9 +1065,6 @@ module:
           content: npm
         inherit:
           - module.export
-      npm.publish:
-        opts:
-          shell: npm publish
       npm.generate.debug.raw:
         opts:
           entryPath: 'path::entry.out.*=1'
@@ -1413,12 +1401,6 @@ module:
         criterion:
           content: doc
           export: 1
-      npm.export:
-        steps:
-          - 'step::npm.publish'
-        criterion:
-          content: npm
-          export: 1
       export:
         steps:
           - 'build::proto.export'
@@ -1476,5 +1458,5 @@ module:
           - 'build::npm'
     consistency:
       ../will.yml:
-        hash: 3e7b5e726d3d7653a6442d0b3618cae8
-        size: 6745
+        hash: 3ea724ae4179b1e51295e2d3b70cecb0
+        size: 6604
